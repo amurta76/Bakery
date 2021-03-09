@@ -1,1 +1,4 @@
-Este È um projeto de conclus„o do Curso de C# da ShareRH
+Este √© um projeto de conclus√£o do Curso de C# da ShareRH
+
+
+ - Link do arquivo de revis√£o da Thaise
