@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Bakery.Dominio
 {
-    class ProdutoFinalProduzido : ProdutoFinal
+    public class ProdutoFinalProduzido : ProdutoFinal
     {
-        public List<Ingredientes> Receita { get; set; }
+        public List<Ingrediente> Receita { get; set; }
 
     }
 }

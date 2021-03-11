@@ -14,5 +14,7 @@ namespace Bakery.Dominio
         public DateTime DataNascimento { get; set; }
         public EnumPerfilUsuario PerfilUsuario { get; set; }
         public string Senha { get; set; }
+
+        public  List<Caixa> Caixas { get; set; }
     }
 }

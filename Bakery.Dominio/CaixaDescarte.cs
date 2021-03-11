@@ -6,14 +6,13 @@ using System.Text;
 
 namespace Bakery.Dominio
 {
-    public class Venda : IEntity
+    public class CaixaDescarte : IEntity
     {
         public int Id { get; set; }
-        public DateTime Data { get; set; }
-        public decimal Valor { get; set; }
         public int IdCaixa { get; set; }
         public Caixa Caixa { get; set; }
-        public EnumTipoPagamento TipoPagamento {get;set;}
-        public List<VendaItem> Itens { get; set; }
+        public int IdProdutoFinal { get; set; }
+        public ProdutoFinal ProdutoFinal { get; set; }
+        public decimal Quantidade { get; set; }
     }
 }
