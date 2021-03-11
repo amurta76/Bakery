@@ -6,5 +6,6 @@ namespace Bakery.Dominio
 {
     public class ProdutoMateriaPrima : Produto
     {
+        public List<Ingrediente> Ingredientes { get; set; }
     }
 }
