@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FSbX6XCjBMDjluHDH2m2Yub9trTb6TldjeVMPBsibNJnp5bL+8FZybPnNSkMSEVZGdfdJ6bYw/kNo+eRJ/2RlA==",
+  "dgSpecHash": "mf+ykwiEm61iMOQ/8U+TSDXvWdKlXFlvBgU0w8/amhoGXceiV7BcyTCJKXoq1LfGMfG2XmmJrIFolyzQWsJuQg==",
   "success": true,
-  "projectFilePath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj",
+  "projectFilePath": "C:\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
