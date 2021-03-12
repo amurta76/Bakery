@@ -1,12 +1,11 @@
 ﻿using Bakery.Data.Interface;
 using Bakery.Dominio;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Bakery.Controllers
 {
@@ -21,29 +20,72 @@ namespace Bakery.Controllers
             _usuarioRepositorio = usuarioRepositorio;
         }
 
-        // GET api/<UsuarioController>/5
         [HttpGet("{id}")]
-        public IActionResult<Usuario> Get(int id)
+        public ActionResult<Usuario> Get(int id)
         {
-            return _usuarioRepositorio.Selecionar(id);
+            try
+            {
+                var usuario = _usuarioRepositorio.Selecionar(id);
+
+                if (usuario == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(usuario);
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
-        // POST api/<UsuarioController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Usuario usuario)
         {
+            try
+            {
+                _usuarioRepositorio.Incluir(usuario);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
-        // PUT api/<UsuarioController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] Usuario usuario)
         {
+            try
+            {
+                if (id == usuario.Id)
+                {
+                    _usuarioRepositorio.Alterar(usuario);
+                    return Ok();
+                }
+                else
+                    return BadRequest();
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
-        // DELETE api/<UsuarioController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            try
+            {
+                _usuarioRepositorio.Excluir(id);
+                return Ok();
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }
+
