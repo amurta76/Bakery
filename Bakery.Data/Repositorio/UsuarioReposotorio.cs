@@ -3,6 +3,7 @@ using Bakery.Data.Repository;
 using Bakery.Dominio;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Bakery.Data.Repositorio
@@ -11,6 +12,22 @@ namespace Bakery.Data.Repositorio
     {
         public UsuarioReposotorio(Contexto contexto) : base(contexto)
         {
+
+        }
+
+        public List<Usuario> ListarUsuario(string nome, string email)
+        {
+            List<Usuario> listausuario;
+            if (string.IsNullOrEmpty(nome) && string.IsNullOrEmpty(email))
+            {
+                listausuario = _contexto.Set<Usuario>().ToList();
+
+            }
+            else
+            {
+                listausuario = _contexto.Set<Usuario>().Where(u => u.Nome == nome || u.Email == email).ToList();
+            }
+            return listausuario;
 
         }
     }

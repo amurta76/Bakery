@@ -7,6 +7,6 @@ namespace Bakery.Data.Interface
 {
     public interface IUsuarioRepositorio : IBaseRepositorio<Usuario>
     {
-
+        List<Usuario> ListarUsuario(string nome, string email);
     }
 }
