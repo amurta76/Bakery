@@ -1,4 +1,6 @@
 using Bakery.Data;
+using Bakery.Data.Interface;
+using Bakery.Data.Repositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +35,8 @@ namespace Bakery
 
             services.AddDbContext<Contexto>(options =>
                  options.UseSqlServer(connectionString));
+
+            services.AddScoped<IUsuarioRepositorio, UsuarioReposotorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

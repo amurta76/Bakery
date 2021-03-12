@@ -8,25 +8,20 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Alexandre\\.nuget\\packages\\": {},
-    "D:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\renaa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj",
+      "projectUniqueName": "C:\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj",
       "projectName": "Bakery.Dominio",
-      "projectPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj",
-      "packagesPath": "C:\\Users\\Alexandre\\.nuget\\packages\\",
-      "outputPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\obj\\",
+      "projectPath": "C:\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj",
+      "packagesPath": "C:\\Users\\renaa\\.nuget\\packages\\",
+      "outputPath": "C:\\Bakery\\Bakery.Dominio\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Alexandre\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\renaa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -65,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
