@@ -4,14 +4,98 @@
     "E:\\campinas-tech\\Projetos\\Bakery\\Bakery\\Bakery.csproj": {}
   },
   "projects": {
-    "E:\\campinas-tech\\Projetos\\Bakery\\Bakery\\Bakery.csproj": {
+    "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Data\\Bakery.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery\\Bakery.csproj",
-        "projectName": "Bakery",
-        "projectPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery\\Bakery.csproj",
+        "projectUniqueName": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Data\\Bakery.Data.csproj",
+        "projectName": "Bakery.Data",
+        "projectPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Data\\Bakery.Data.csproj",
         "packagesPath": "C:\\Users\\Alexandre\\.nuget\\packages\\",
-        "outputPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery\\obj\\",
+        "outputPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Alexandre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj": {
+                "projectPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj",
+        "projectName": "Bakery.Dominio",
+        "projectPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj",
+        "packagesPath": "C:\\Users\\Alexandre\\.nuget\\packages\\",
+        "outputPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft\\Xamarin\\NuGet\\"
@@ -43,6 +127,79 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\campinas-tech\\Projetos\\Bakery\\Bakery\\Bakery.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery\\Bakery.csproj",
+        "projectName": "Bakery",
+        "projectPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery\\Bakery.csproj",
+        "packagesPath": "C:\\Users\\Alexandre\\.nuget\\packages\\",
+        "outputPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Alexandre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Data\\Bakery.Data.csproj": {
+                "projectPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Data\\Bakery.Data.csproj"
+              },
+              "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj": {
+                "projectPath": "E:\\campinas-tech\\Projetos\\Bakery\\Bakery.Dominio\\Bakery.Dominio.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
