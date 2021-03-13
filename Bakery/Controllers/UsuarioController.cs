@@ -32,7 +32,7 @@ namespace Bakery.Controllers
 
                 if (usuario == null)
                 {
-                    return NotFound();
+                    return NotFound("Usuário não encontrado.");
                 }
 
                 return Ok(usuario);
@@ -49,7 +49,7 @@ namespace Bakery.Controllers
             try
             {
                 _usuarioRepositorio.Incluir(usuario);
-                return Ok();
+                return Ok("Usuário incluído com sucesso.");
             }
             catch (Exception e)
             {
@@ -65,10 +65,10 @@ namespace Bakery.Controllers
                 if (id == usuario.Id)
                 {
                     _usuarioRepositorio.Alterar(usuario);
-                    return Ok();
+                    return Ok("Usuário alterado com sucesso.");
                 }
                 else
-                    return BadRequest();
+                    return BadRequest("Falha na alteração do usuário.");
             }
             catch
             {
@@ -82,7 +82,7 @@ namespace Bakery.Controllers
             try
             {
                 _usuarioRepositorio.Excluir(id);
-                return Ok();
+                return Ok("Usuário deletado com sucesso.");
             }
             catch
             {
