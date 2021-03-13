@@ -4,14 +4,16 @@ using Bakery.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bakery.Data.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20210313142426_addestoque")]
+    partial class addestoque
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,15 +85,18 @@ namespace Bakery.Data.Migrations
                     b.Property<int>("IdProduto")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProdutoId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Quantidade")
-                        .HasColumnType("decimal(18,3)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("TipoEstoque")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdProduto");
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("Estoque");
                 });
@@ -300,9 +305,7 @@ namespace Bakery.Data.Migrations
                 {
                     b.HasOne("Bakery.Dominio.Produto", "Produto")
                         .WithMany("Estoques")
-                        .HasForeignKey("IdProduto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProdutoId");
 
                     b.Navigation("Produto");
                 });

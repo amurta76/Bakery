@@ -14,5 +14,6 @@ namespace Bakery.Dominio
         public string UnidadeMedida { get; set; }
         public decimal QuantidadeEstoque { get; set; }
         public bool Situacao { get; set; }
+        public List<Estoque> Estoques { get; set; }
     }
 }

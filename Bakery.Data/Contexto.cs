@@ -21,6 +21,8 @@ namespace Bakery.Data
         public DbSet<ProdutoMateriaPrima> ProdutoMateriaPrima { get; set; }
         public DbSet<Venda> Venda { get; set; }
         public DbSet<VendaItem> VendaItem { get; set; }
+        public DbSet<Estoque> Estoque { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,6 +37,7 @@ namespace Bakery.Data
             modelBuilder.ApplyConfiguration(new UsuarioMap());
             modelBuilder.ApplyConfiguration(new VendaMap());
             modelBuilder.ApplyConfiguration(new VendaItemMap());
+            modelBuilder.ApplyConfiguration(new EstoqueMap());
         }
 
 
