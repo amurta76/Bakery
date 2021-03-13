@@ -7,6 +7,7 @@ namespace Bakery.Data.Interface
 {
     public interface IProdutoRepositorio : IBaseRepositorio<Produto>
     {
-       
+        decimal BuscarQuantidadeEstoque(int id);
+
     }
 }

@@ -89,13 +89,13 @@ namespace Bakery.Controllers
             {
                 if (id == produto.Id)
                 {
-                    var produtoBase = _produtoRepositorio.Selecionar(id);
-                    
+                    var quantidadeEstoque = _produtoRepositorio.BuscarQuantidadeEstoque(id);
+
                     //a quantidade nao deve atualizar com o que foi informado
-                    produto.QuantidadeEstoque = produtoBase.QuantidadeEstoque;
-                                        
+                    produto.QuantidadeEstoque = quantidadeEstoque;
+
                     _produtoRepositorio.Alterar(produto);
-                    return Ok("Produto alterado com sucesso.");                    
+                    return Ok("Produto alterado com sucesso.");
                 }
                 else
                     return BadRequest("Falha na alteração do produto.");
@@ -107,7 +107,7 @@ namespace Bakery.Controllers
         }
 
         [HttpPut()]
-        [Route ("Inativar/{id}")]
+        [Route("Inativar/{id}")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Inativar(int id, [FromBody] Produto produto)
         {
@@ -115,9 +115,10 @@ namespace Bakery.Controllers
             {
                 if (id == produto.Id)
                 {
-                    if( produto.TipoProduto == EnumTipoProduto.MATERIA_PRIMA)
+                    if (produto.TipoProduto == EnumTipoProduto.MATERIA_PRIMA)
                     {
-                        if (!_ingredienteRepositorio.MateriaPrimaSemProdutoFinal(produto.Id)) {
+                        if (!_ingredienteRepositorio.MateriaPrimaSemProdutoFinal(produto.Id))
+                        {
                             return BadRequest("Materia Prima utlizada em Produtos Finais Produzidos. Não pode ser inativada.");
                         }
                     }
