@@ -54,6 +54,39 @@ namespace Bakery.Controllers
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Post([FromBody] Produto produto)
         {
+            return IncluirProduto(produto);
+        }
+
+        private bool VerificarEstoqueMateriaPrima (ProdutoFinalProduzido produtoFinalProduzido)
+        {
+            foreach (var item in produtoFinalProduzido.Receita)
+            {
+                var ingrediente = _produtoRepositorio.Selecionar(item.IdMateriaPrima);
+
+                if (! ingrediente.Situacao || item.Quantidade <= 0)
+                {
+                    return false;
+                }                
+            }
+            return true;
+        }
+
+        [HttpPost]
+        [Route("ProdutoFinalProduzido")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        public IActionResult Post([FromBody] ProdutoFinalProduzido produto)
+        {
+
+            if (VerificarEstoqueMateriaPrima(produto))
+            {
+                return IncluirProduto(produto);
+            }
+            else
+                return BadRequest("Existem matérias-primas da receita que estão inativas ou com quantidades inválidas.");
+        }
+
+        private IActionResult IncluirProduto(Produto produto)
+        {
             try
             {
                 if (produto.QuantidadeEstoque <= 0)
@@ -85,6 +118,24 @@ namespace Bakery.Controllers
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Put(int id, [FromBody] Produto produto)
         {
+            return AlterarProduto(id, produto);
+        }
+
+        [HttpPut()]
+        [Route("ProdutoFinalProduzido/{id}")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        public IActionResult Put(int id, [FromBody] ProdutoFinalProduzido produto)
+        {
+            if (VerificarEstoqueMateriaPrima(produto))
+            {
+                return AlterarProduto(id, produto);
+            }
+            else
+                return BadRequest("Existem matérias - primas da receita que estão inativas ou com quantidades inválidas.");
+        }
+
+        private IActionResult AlterarProduto(int id, Produto produto)
+        {
             try
             {
                 if (id == produto.Id)
@@ -105,6 +156,7 @@ namespace Bakery.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
 
         [HttpPut()]
         [Route("Inativar/{id}")]
@@ -130,7 +182,7 @@ namespace Bakery.Controllers
                 else
                     return BadRequest("Falha na inativação do produto.");
             }
-            catch
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
