@@ -113,14 +113,7 @@ namespace Bakery.Controllers
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Put(int id, [FromBody] ProdutoFinal produto)
         {
-            if (produto.ValidaQuantidadeEstoque())
-            {
-                return AlterarProduto(id, produto);
-            }
-            else
-            {
-                return BadRequest("Quantidade inválida.");
-            }
+            return AlterarProdutoFinal(id, produto);
         }
 
         [HttpPost]
@@ -128,9 +121,7 @@ namespace Bakery.Controllers
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Post([FromBody] ProdutoFinal produto)
         {
-
-            return IncluirProduto(produto);
-
+            return IncluirProdutoFinal(produto);
         }
 
         #endregion
@@ -142,12 +133,10 @@ namespace Bakery.Controllers
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Put(int id, [FromBody] ProdutoFinalProduzido produto)
         {
-            if (produto.ValidaQuantidadeEstoque() && VerificarEstoqueMateriaPrima(produto))
+            if (VerificarEstoqueMateriaPrima(produto))
             {
-                return AlterarProduto(id, produto);
+                return AlterarProdutoFinal(id, produto);
             }
-            else if (!produto.ValidaQuantidadeEstoque())
-                return BadRequest("Quantidade inválida.");
             else
                 return BadRequest("Existem matérias - primas da receita que estão inativas ou com quantidades inválidas.");
         }
@@ -157,12 +146,10 @@ namespace Bakery.Controllers
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Post([FromBody] ProdutoFinalProduzido produto)
         {
-            if (produto.ValidaQuantidadeEstoque() && VerificarEstoqueMateriaPrima(produto))
+            if (VerificarEstoqueMateriaPrima(produto))
             {
-                return IncluirProduto(produto);
+                return IncluirProdutoFinal(produto);
             }
-            else if (!produto.ValidaQuantidadeEstoque())
-                return BadRequest("Quantidade inválida.");
             else
                 return BadRequest("Existem matérias - primas da receita que estão inativas ou com quantidades inválidas.");
         }
@@ -175,7 +162,7 @@ namespace Bakery.Controllers
         {
             try
             {
-                if (produto.ValidaQuantidadeEstoque())
+                if (!produto.ValidaQuantidadeEstoque())
                 {
                     return BadRequest("A quantidade não pode ser negativa ou zero.");
                 }
@@ -201,6 +188,16 @@ namespace Bakery.Controllers
             }
         }
 
+        private IActionResult IncluirProdutoFinal(ProdutoFinal produto)
+        {
+            if (produto.ValidaQuantidadeEstoque() && produto.ValidaValor())
+                return IncluirProduto(produto);
+            else if (!produto.ValidaQuantidadeEstoque())
+                return BadRequest("Quantidade inválida.");
+            else
+                return BadRequest("Valor inválido.");
+        }
+
         private IActionResult AlterarProduto(int id, Produto produto)
         {
             try
@@ -211,7 +208,7 @@ namespace Bakery.Controllers
 
                     //a quantidade nao deve atualizar com o que foi informado
                     produto.QuantidadeEstoque = quantidadeEstoque;
-
+                    produto.Situacao = true;
                     _produtoRepositorio.Alterar(produto);
                     return Ok("Produto alterado com sucesso.");
                 }
@@ -222,6 +219,16 @@ namespace Bakery.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
+        }
+
+        private IActionResult AlterarProdutoFinal(int id, ProdutoFinal produto)
+        {
+            if (produto.ValidaQuantidadeEstoque() && produto.ValidaValor())
+                return AlterarProduto(id, produto);
+            else if (!produto.ValidaQuantidadeEstoque())
+                return BadRequest("Quantidade inválida.");
+            else
+                return BadRequest("Valor inválido.");
         }
 
         private bool VerificarEstoqueMateriaPrima(ProdutoFinalProduzido produtoFinalProduzido)

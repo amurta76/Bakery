@@ -27,7 +27,7 @@ namespace Bakery.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(login.email) || string.IsNullOrEmpty(login.Senha))
+                if (!login.ValidaLogin())
                     return BadRequest("Email e/ou senha não devem ser vazias ");
                 
                 var usuario = _usuarioRepositorio.Login(login);
