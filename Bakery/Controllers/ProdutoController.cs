@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bakery.Dominio;
 using Microsoft.AspNetCore.Http;
-
+using Bakery.Dominio.Enum;
 
 namespace Bakery.Controllers
 {
@@ -16,9 +16,13 @@ namespace Bakery.Controllers
     {
         private readonly IProdutoRepositorio _produtoRepositorio;
 
-        public ProdutoController(IProdutoRepositorio produtoRepositorio)
+        private readonly IEstoqueRepositorio _estoqueRepositorio;
+
+        public ProdutoController(IProdutoRepositorio produtoRepositorio,
+                                 IEstoqueRepositorio estoqueRepositorio)
         {
             _produtoRepositorio = produtoRepositorio;
+            _estoqueRepositorio = estoqueRepositorio;
         }
 
         [HttpGet("{id}")]
@@ -52,6 +56,17 @@ namespace Bakery.Controllers
                 }
 
                 _produtoRepositorio.Incluir(produto);
+
+                Estoque estoque = new Estoque()
+                {
+                    Produto = produto,
+                    Data = new DateTime(),
+                    Quantidade = produto.QuantidadeEstoque,
+                    TipoEstoque = EnumTipoEstoque.ENTRADA
+                };
+
+                _estoqueRepositorio.Incluir(estoque);
+
                 return Ok("Produto incluído com sucesso.");
             }
             catch (Exception e)
@@ -67,13 +82,11 @@ namespace Bakery.Controllers
             {
                 if (id == produto.Id)
                 {
-                    _produtoRepositorio.Alterar(produto);
+                    var produtoBase = _produtoRepositorio.Selecionar(id);
 
-                    if (produto.QuantidadeEstoque <= 0)
-                    {
-                        return BadRequest("A quantidade não pode ser negativa ou zero.");
-                    }
-                   
+                    //a quantidade nao deve atualizar com o que foi informado
+                    produto.QuantidadeEstoque = produtoBase.QuantidadeEstoque;
+                                        
                     _produtoRepositorio.Alterar(produto);
                     return Ok("Produto alterado com sucesso.");                    
                 }

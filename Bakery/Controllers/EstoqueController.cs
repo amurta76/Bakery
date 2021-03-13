@@ -19,12 +19,12 @@ namespace Bakery.Controllers
         private readonly IEstoqueRepositorio _estoqueRepositorio;
         private readonly IProdutoRepositorio _produtoRepositorio;
 
-        public EstoqueController(IEstoqueRepositorio estoqueRepositorio,IProdutoRepositorio produtoRepositorio)
+        public EstoqueController(IEstoqueRepositorio estoqueRepositorio, IProdutoRepositorio produtoRepositorio)
 
         {
             _estoqueRepositorio = estoqueRepositorio;
             _produtoRepositorio = produtoRepositorio;
-        }   
+        }
 
         [HttpGet("{id}")]
         public ActionResult<Estoque> Get(int id)
@@ -35,13 +35,10 @@ namespace Bakery.Controllers
                 if (estoque == null)
                     return NotFound();
                 return Ok(estoque);
-
             }
-            catch 
+            catch
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError);
-
             }
         }
 
@@ -53,11 +50,14 @@ namespace Bakery.Controllers
             {
                 if (estoque.Quantidade <= 0)
                     return BadRequest("Quantidade inválida");
+
                 var produto = _produtoRepositorio.Selecionar(estoque.IdProduto);
                 if (produto == null)
                     return NotFound("Produto não encontrado");
+
                 if (estoque.TipoEstoque == Dominio.Enum.EnumTipoEstoque.ENTRADA)
                     produto.QuantidadeEstoque += estoque.Quantidade;
+
                 else produto.QuantidadeEstoque -= estoque.Quantidade;
 
                 _estoqueRepositorio.Incluir(estoque);
@@ -71,6 +71,16 @@ namespace Bakery.Controllers
 
         }
 
-       
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Estoque estoque)
+        {
+            return BadRequest("Não é permitido a exclusão de matérias-primas.");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            return BadRequest("Não é permitido a exclusão de matérias-primas.");
+        }
     }
 }
