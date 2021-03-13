@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using Bakery.Dominio;
 using Microsoft.AspNetCore.Http;
 using Bakery.Dominio.Enum;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Bakery.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class ProdutoController : ControllerBase
     {
         private readonly IProdutoRepositorio _produtoRepositorio;
@@ -49,6 +51,7 @@ namespace Bakery.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Post([FromBody] Produto produto)
         {
             try
@@ -79,6 +82,7 @@ namespace Bakery.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Put(int id, [FromBody] Produto produto)
         {
             try
@@ -102,7 +106,9 @@ namespace Bakery.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut()]
+        [Route ("Inativar/{id}")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Inativar(int id, [FromBody] Produto produto)
         {
             try
@@ -130,6 +136,7 @@ namespace Bakery.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Delete(int id)
         {
             return BadRequest("Não é permitido a exclusão de matérias-primas.");

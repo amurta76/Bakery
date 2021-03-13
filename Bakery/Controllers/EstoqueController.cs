@@ -1,6 +1,7 @@
 ﻿using Bakery.Data.Interface;
 using Bakery.Data.Repositorio;
 using Bakery.Dominio;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -44,6 +45,7 @@ namespace Bakery.Controllers
 
         // POST api/<EstoqueController>
         [HttpPost]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Post([FromBody] Estoque estoque)
         {
             try
@@ -73,15 +75,17 @@ namespace Bakery.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Put(int id, [FromBody] Estoque estoque)
         {
-            return BadRequest("Não é permitido a exclusão de matérias-primas.");
+            return BadRequest("Não é permitido a alteração do estoque.");
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public IActionResult Delete(int id)
         {
-            return BadRequest("Não é permitido a exclusão de matérias-primas.");
+            return BadRequest("Não é permitido a alteração do estoque.");
         }
     }
 }

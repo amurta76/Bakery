@@ -8,6 +8,7 @@ namespace Bakery.Dominio.Enum
     {
            MATERIA_PRIMA,
            PRODUZIDO,
-           TERCERIZADO
+           TERCERIZADO,
+           PRODUTO
     }
 }

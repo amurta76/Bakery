@@ -1,4 +1,5 @@
 ﻿using Bakery.Dominio;
+using Bakery.Dominio.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -28,15 +29,16 @@ namespace Bakery.Data.Map
             builder.Property(x => x.TipoProduto).IsRequired();
 
             //builder.Property(x => x.TipoProduto).IsRequired();     
-            
+
 
             //herancas
             builder
-                .HasDiscriminator<int>("ProdutoType")
-                .HasValue<Produto>(1)
-                .HasValue<ProdutoMateriaPrima>(2)
-                .HasValue<ProdutoFinal>(3)
-                .HasValue<ProdutoFinalProduzido>(4);
+                .HasDiscriminator<EnumTipoProduto>("TipoProduto")
+                .HasValue<Produto>(EnumTipoProduto.PRODUTO)
+                .HasValue<ProdutoMateriaPrima>(EnumTipoProduto.MATERIA_PRIMA)
+                .HasValue<ProdutoFinalProduzido>(EnumTipoProduto.PRODUZIDO)
+                .HasValue<ProdutoFinal>(EnumTipoProduto.TERCERIZADO);
+                
 
 
         }
