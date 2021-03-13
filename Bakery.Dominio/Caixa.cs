@@ -9,7 +9,6 @@ namespace Bakery.Dominio
     public class Caixa : IEntity
     {
         public int Id { get; set; }
-
         public int IdUsuario { get; set; }
         public Usuario Usuario { get; set; }
         public DateTime DataAbertura { get; set; }

@@ -99,6 +99,26 @@ namespace Bakery.Controllers
             }
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Inativar(int id, [FromBody] Produto produto)
+        {
+            try
+            {
+                if (id == produto.Id)
+                {
+                    produto.Situacao = false;
+                    _produtoRepositorio.Alterar(produto);
+                    return Ok("Produto inativado com sucesso.");
+                }
+                else
+                    return BadRequest("Falha na inativação do produto.");
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
