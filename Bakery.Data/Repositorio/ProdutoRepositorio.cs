@@ -9,6 +9,5 @@ namespace Bakery.Data.Repositorio
         public ProdutoRepositorio(Contexto contexto) : base(contexto)
         {
         }
-
     }
 }

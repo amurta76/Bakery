@@ -25,6 +25,11 @@ namespace Bakery.Data.Map
              .WithMany(c => c.Ingredientes)
              .HasForeignKey(e => e.IdMateriaPrima);
 
+            builder.HasOne(u => u.ProdutoFinalProduzido)
+            .WithMany(c => c.Receita)
+            .HasForeignKey(e => e.IdProdutoFinalProduzido).OnDelete(DeleteBehavior.NoAction);
+            
+
         }
     }
 }

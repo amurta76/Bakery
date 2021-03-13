@@ -11,6 +11,11 @@ namespace Bakery.Dominio
 
         public int IdMateriaPrima { get; set; }
         public ProdutoMateriaPrima MateriaPrima { get; set; }
+        public int IdProdutoFinalProduzido { get; set; }
+        public ProdutoFinalProduzido ProdutoFinalProduzido { get; set; }
         public decimal Quantidade { get; set; }
+        
+
+
     }
 }
