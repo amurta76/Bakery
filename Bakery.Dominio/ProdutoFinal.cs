@@ -9,5 +9,10 @@ namespace Bakery.Dominio
         public decimal Valor { get; set; }
         public List<VendaItem> VendaItems { get; set; }
         public List<CaixaDescarte> Descartes { get; set; }
+
+        public bool ValidaValor()
+        {
+            return Valor > decimal.Zero;
+        }
     }
 }

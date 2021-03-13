@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Bakery.Dominio.Enum
 {
-    public enum  EnumTipoProduto
+    public enum EnumTipoProduto
     {
-           MATERIA_PRIMA,
-           PRODUZIDO,
-           TERCERIZADO,
-           PRODUTO
+        MATERIA_PRIMA,
+        PRODUZIDO,
+        TERCERIZADO,
+        PRODUTO
     }
 }

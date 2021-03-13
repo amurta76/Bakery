@@ -6,7 +6,7 @@ namespace Bakery.Dominio.Enum
 {
     public enum EnumSitucaoCaixa
     {
-           ABERTO,
-           FECHADO
+        ABERTO,
+        FECHADO
     }
 }

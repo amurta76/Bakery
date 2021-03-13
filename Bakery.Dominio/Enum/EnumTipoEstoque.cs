@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Bakery.Dominio.Enum
 {
-   public enum EnumTipoEstoque 
+    public enum EnumTipoEstoque
     {
         ENTRADA,
         SAIDA,
         DESCARTE
     }
-} 
+}

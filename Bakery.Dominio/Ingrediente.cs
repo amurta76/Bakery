@@ -13,8 +13,11 @@ namespace Bakery.Dominio
         public int IdProdutoFinalProduzido { get; set; }
         public ProdutoFinalProduzido ProdutoFinalProduzido { get; set; }
         public decimal Quantidade { get; set; }
-        
 
+        public bool ValidaQuantidade()
+        {
+            return Quantidade > decimal.Zero;
+        }
 
     }
 }

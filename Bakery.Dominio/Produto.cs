@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Bakery.Dominio
 {
-    public class Produto: IEntity
+    public class Produto : IEntity
     {
         public int Id { get; set; }
         public EnumTipoProduto TipoProduto { get; set; }
@@ -15,5 +15,10 @@ namespace Bakery.Dominio
         public decimal QuantidadeEstoque { get; set; }
         public bool Situacao { get; set; }
         public List<Estoque> Estoques { get; set; }
+
+        public bool ValidaQuantidadeEstoque()
+        {
+            return QuantidadeEstoque > decimal.Zero;
+        }
     }
 }

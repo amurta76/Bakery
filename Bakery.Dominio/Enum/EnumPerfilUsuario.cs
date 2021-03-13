@@ -6,7 +6,7 @@ namespace Bakery.Dominio.Enum
 {
     public enum EnumPerfilUsuario
     {
-        ADMINISTRADOR, 
+        ADMINISTRADOR,
         PADEIRO,
         ESTOQUISTA,
         VENDEDOR

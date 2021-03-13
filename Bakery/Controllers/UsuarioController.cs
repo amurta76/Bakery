@@ -51,7 +51,7 @@ namespace Bakery.Controllers
                 _usuarioRepositorio.Incluir(usuario);
                 return Ok("Usuário incluído com sucesso.");
             }
-            catch (Exception e)
+            catch 
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }

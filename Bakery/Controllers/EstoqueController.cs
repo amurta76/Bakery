@@ -50,7 +50,7 @@ namespace Bakery.Controllers
         {
             try
             {
-                if (estoque.Quantidade <= 0)
+                if (estoque.ValidaQuantidade())
                     return BadRequest("Quantidade inválida");
 
                 var produto = _produtoRepositorio.Selecionar(estoque.IdProduto);

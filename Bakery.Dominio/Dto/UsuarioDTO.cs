@@ -10,6 +10,6 @@ namespace Bakery.Dominio.Dto
         public string Nome { get; set; }
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
-        public string PerfilUsuario { get;set; }
+        public string PerfilUsuario { get; set; }
     }
 }
