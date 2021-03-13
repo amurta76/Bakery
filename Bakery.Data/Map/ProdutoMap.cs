@@ -27,9 +27,8 @@ namespace Bakery.Data.Map
 
             builder.Property(x => x.TipoProduto).IsRequired();
 
-            builder.Property(x => x.TipoProduto).IsRequired();
-
-
+            //builder.Property(x => x.TipoProduto).IsRequired();     
+            
 
             //herancas
             builder

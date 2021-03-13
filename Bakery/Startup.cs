@@ -41,6 +41,7 @@ namespace Bakery
                  options.UseSqlServer(connectionString));
 
             services.AddScoped<IUsuarioRepositorio, UsuarioReposotorio>();
+            services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 
             services.AddAuthentication(a => {
                 a.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

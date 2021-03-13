@@ -2,10 +2,8 @@
 using Bakery.Data.Repository;
 using Bakery.Dominio;
 using Bakery.Dominio.Dto;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Bakery.Data.Repositorio
 {
@@ -13,7 +11,6 @@ namespace Bakery.Data.Repositorio
     {
         public UsuarioReposotorio(Contexto contexto) : base(contexto)
         {
-
         }
 
         public List<UsuarioDTO> ListarUsuario(string nome, string email)
