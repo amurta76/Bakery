@@ -27,7 +27,7 @@ namespace Bakery.Data.Repositorio
             {
                 listausuario = _contexto.Set<Usuario>().Where(u => u.Nome == nome || u.Email == email).ToList();
             }
-            return listausuario;
+            return listausuario.OrderBy(x => x.Nome).ToList();
 
         }
     }

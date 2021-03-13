@@ -86,7 +86,7 @@ namespace Bakery.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-        [HttpPost(Name ="ListarUsuario")]
+        [HttpGet("ListarUsuario")]
         public ActionResult<List<Usuario>> ListarUsuario(string nome, string email) {
             try
             {
