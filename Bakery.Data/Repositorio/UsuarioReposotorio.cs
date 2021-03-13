@@ -1,6 +1,7 @@
 ﻿using Bakery.Data.Interface;
 using Bakery.Data.Repository;
 using Bakery.Dominio;
+using Bakery.Dominio.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,6 @@ namespace Bakery.Data.Repositorio
             if (string.IsNullOrEmpty(nome) && string.IsNullOrEmpty(email))
             {
                 listausuario = _contexto.Set<Usuario>().ToList();
-
             }
             else
             {
@@ -29,6 +29,12 @@ namespace Bakery.Data.Repositorio
             }
             return listausuario.OrderBy(x => x.Nome).ToList();
 
+        }
+
+        Usuario IUsuarioRepositorio.Login(LoginDTO login)
+        {
+            var usuario = _contexto.Set<Usuario>().FirstOrDefault(u => u.Email == login.email && u.Senha == login.Senha);
+            return usuario;
         }
     }
 }

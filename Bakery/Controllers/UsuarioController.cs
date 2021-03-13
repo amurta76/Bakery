@@ -1,5 +1,6 @@
 ﻿using Bakery.Data.Interface;
 using Bakery.Dominio;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ namespace Bakery.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "ADMINISTRADOR")]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
@@ -86,7 +88,8 @@ namespace Bakery.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-        [HttpGet("ListarUsuario")]
+        [HttpGet()]
+        [Route("ListarUsuario")]
         public ActionResult<List<Usuario>> ListarUsuario(string nome, string email) {
             try
             {
