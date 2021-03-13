@@ -233,6 +233,9 @@ namespace Bakery.Controllers
 
         private bool VerificarEstoqueMateriaPrima(ProdutoFinalProduzido produtoFinalProduzido)
         {
+            if (produtoFinalProduzido.Receita == null)
+                return false;
+
             foreach (var item in produtoFinalProduzido.Receita)
             {
                 var ingrediente = _produtoRepositorio.Selecionar(item.IdMateriaPrima);
