@@ -35,13 +35,10 @@ namespace Bakery.Controllers
                 if (estoque == null)
                     return NotFound();
                 return Ok(estoque);
-
             }
             catch
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError);
-
             }
         }
 
@@ -75,6 +72,16 @@ namespace Bakery.Controllers
 
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Estoque estoque)
+        {
+            return BadRequest("Não é permitido a exclusão de matérias-primas.");
+        }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            return BadRequest("Não é permitido a exclusão de matérias-primas.");
+        }
     }
 }
