@@ -30,7 +30,7 @@ namespace Bakery.Controllers
 
                 if (produto == null)
                 {
-                    return NotFound();
+                    return NotFound("Produto não encontrado.");
                 }
 
                 return Ok(produto);
@@ -46,8 +46,13 @@ namespace Bakery.Controllers
         {
             try
             {
+                if (produto.QuantidadeEstoque <= 0)
+                {
+                    return BadRequest("A quantidade não pode ser negativa ou zero.");
+                }
+
                 _produtoRepositorio.Incluir(produto);
-                return Ok();
+                return Ok("Produto incluído com sucesso.");
             }
             catch (Exception e)
             {
@@ -63,10 +68,17 @@ namespace Bakery.Controllers
                 if (id == produto.Id)
                 {
                     _produtoRepositorio.Alterar(produto);
-                    return Ok();
+
+                    if (produto.QuantidadeEstoque <= 0)
+                    {
+                        return BadRequest("A quantidade não pode ser negativa ou zero.");
+                    }
+                   
+                    _produtoRepositorio.Alterar(produto);
+                    return Ok("Produto alterado com sucesso.");                    
                 }
                 else
-                    return BadRequest();
+                    return BadRequest("Falha na alteração do produto.");
             }
             catch
             {
