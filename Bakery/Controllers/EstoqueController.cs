@@ -68,7 +68,6 @@ namespace Bakery.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
 
