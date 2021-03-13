@@ -12,6 +12,7 @@ namespace Bakery.Data.Repositorio
     {
         public IngredienteRepositorio(Contexto contexto) : base(contexto)
         {
+
         }
 
         public bool MateriaPrimaSemProdutoFinal(int IdMateriaPrima) {
