@@ -90,7 +90,7 @@ namespace Bakery.Controllers
                 if (id == produto.Id)
                 {
                     var produtoBase = _produtoRepositorio.Selecionar(id);
-
+                    
                     //a quantidade nao deve atualizar com o que foi informado
                     produto.QuantidadeEstoque = produtoBase.QuantidadeEstoque;
                                         
@@ -100,7 +100,7 @@ namespace Bakery.Controllers
                 else
                     return BadRequest("Falha na alteração do produto.");
             }
-            catch
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
