@@ -23,7 +23,8 @@ namespace Bakery.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public IActionResult Login([FromBody] LoginDTO login) {
+        public IActionResult Login([FromBody] LoginDTO login) 
+        {
             try
             {
                 if (string.IsNullOrEmpty(login.email) || string.IsNullOrEmpty(login.Senha))

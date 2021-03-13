@@ -1,5 +1,6 @@
 ﻿using Bakery.Data.Interface;
 using Bakery.Dominio;
+using Bakery.Dominio.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -90,7 +91,8 @@ namespace Bakery.Controllers
         }
         [HttpGet()]
         [Route("ListarUsuario")]
-        public ActionResult<List<Usuario>> ListarUsuario(string nome, string email) {
+        public ActionResult<List<UsuarioDTO>> ListarUsuario(string nome, string email) 
+        {
             try
             {
                 var listausuario=_usuarioRepositorio.ListarUsuario(nome, email);

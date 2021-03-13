@@ -16,9 +16,9 @@ namespace Bakery.Data.Repositorio
 
         }
 
-        public List<Usuario> ListarUsuario(string nome, string email)
+        public List<UsuarioDTO> ListarUsuario(string nome, string email)
         {
-            List<Usuario> listausuario;
+            List<Usuario> listausuario = new List<Usuario>(0);
             if (string.IsNullOrEmpty(nome) && string.IsNullOrEmpty(email))
             {
                 listausuario = _contexto.Set<Usuario>().ToList();
@@ -27,8 +27,18 @@ namespace Bakery.Data.Repositorio
             {
                 listausuario = _contexto.Set<Usuario>().Where(u => u.Nome == nome || u.Email == email).ToList();
             }
-            return listausuario.OrderBy(x => x.Nome).ToList();
 
+            return listausuario.Select(s =>
+
+                    new UsuarioDTO()
+                    {
+                        Nome = s.Nome,
+                        Email = s.Email,
+                        DataNascimento = s.DataNascimento,
+                        PerfilUsuario = s.PerfilUsuario.ToString()
+                    }
+
+                ).OrderBy(x => x.Nome).ToList();
         }
 
         Usuario IUsuarioRepositorio.Login(LoginDTO login)
