@@ -17,12 +17,15 @@ namespace Bakery.Controllers
         private readonly IProdutoRepositorio _produtoRepositorio;
 
         private readonly IEstoqueRepositorio _estoqueRepositorio;
+        private readonly IIngredienteRepositorio _ingredienteRepositorio;
 
         public ProdutoController(IProdutoRepositorio produtoRepositorio,
-                                 IEstoqueRepositorio estoqueRepositorio)
+                                 IEstoqueRepositorio estoqueRepositorio,
+                                 IIngredienteRepositorio ingredienteRepositorio)
         {
             _produtoRepositorio = produtoRepositorio;
             _estoqueRepositorio = estoqueRepositorio;
+            _ingredienteRepositorio = ingredienteRepositorio;
         }
 
         [HttpGet("{id}")]
@@ -106,6 +109,13 @@ namespace Bakery.Controllers
             {
                 if (id == produto.Id)
                 {
+                    if( produto.TipoProduto == EnumTipoProduto.MATERIA_PRIMA)
+                    {
+                        if (!_ingredienteRepositorio.MateriaPrimaSemProdutoFinal(produto.Id)) {
+                            return BadRequest("Materia Prima utlizada em Produtos Finais Produzidos. Não pode ser inativada.");
+                        }
+                    }
+
                     produto.Situacao = false;
                     _produtoRepositorio.Alterar(produto);
                     return Ok("Produto inativado com sucesso.");

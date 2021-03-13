@@ -7,5 +7,6 @@ namespace Bakery.Data.Interface
 {
     public interface IIngredienteRepositorio : IBaseRepositorio<Ingrediente>
     {
+        bool MateriaPrimaSemProdutoFinal(int IdMateriaPrima);
     }
 }
