@@ -1,4 +1,4 @@
-Este é um projeto de conclusão do Curso de C# da ShareRH
+Este é um projeto de conclusão do Curso de C# da CTT
 
 
  - Link do arquivo de revisão da Thaise 
