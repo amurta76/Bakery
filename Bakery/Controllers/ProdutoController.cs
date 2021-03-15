@@ -157,6 +157,7 @@ namespace Bakery.Controllers
         }
         [HttpGet()]
         [Route("ListarMateriasPrimas")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         public ActionResult<List<ProdutoListagemDTO>> ProdutoListagem(string nome,bool mostrarInativos)
         {
             try
