@@ -12,6 +12,13 @@ namespace Bakery.Data.Repositorio
     {
         public CaixaRepositorio(Contexto contexto) : base(contexto) { }
 
-        
+        var contagem = _contexto.Set<Caixa>()
+                            .Where(ca => ca.IdIdCaixa == IdCaixa &&
+                                        ca.ProdutoFinalProduzido.Situacao == true).Count();
+
+            if (contagem > 0)
+                return false;
+            else
+                return true;
     }
 }
