@@ -7,11 +7,20 @@ using System.Text;
 
 namespace Bakery.Data.Repositorio
 {
-    public class EstoqueRepositorio : BaseRepositorio<Estoque> ,IEstoqueRepositorio
+    public class EstoqueRepositorio : BaseRepositorio<Estoque>, IEstoqueRepositorio
     {
         public EstoqueRepositorio(Contexto contexto): base(contexto) 
         {
 
+        }
+
+        public bool VerificaEstoqueQuantidadeMateiraPrima(ProdutoMateriaPrima materiaPrima, decimal quantidade)
+        {
+            if (materiaPrima.QuantidadeEstoque > quantidade)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
