@@ -19,7 +19,7 @@ namespace Bakery.Controllers
     {
         private readonly IEstoqueRepositorio _estoqueRepositorio;
         private readonly IProdutoRepositorio _produtoRepositorio;
-
+        
         public EstoqueController(IEstoqueRepositorio estoqueRepositorio, IProdutoRepositorio produtoRepositorio)
 
         {
