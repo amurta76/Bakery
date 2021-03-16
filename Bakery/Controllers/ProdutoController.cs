@@ -8,6 +8,7 @@ using Bakery.Dominio;
 using Microsoft.AspNetCore.Http;
 using Bakery.Dominio.Enum;
 using Microsoft.AspNetCore.Authorization;
+using Bakery.Dominio.Dto;
 
 namespace Bakery.Controllers
 {
@@ -20,6 +21,7 @@ namespace Bakery.Controllers
 
         private readonly IEstoqueRepositorio _estoqueRepositorio;
         private readonly IIngredienteRepositorio _ingredienteRepositorio;
+        private object mostrarInativos;
 
         public ProdutoController(IProdutoRepositorio produtoRepositorio,
                                  IEstoqueRepositorio estoqueRepositorio,
@@ -154,6 +156,27 @@ namespace Bakery.Controllers
             }
             else
                 return BadRequest("Existem matérias-primas da receita que estão inativas ou com quantidades inválidas.");
+        }
+        [HttpGet()]
+        [Route("ListarMateriasPrimas")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        public ActionResult<List<ProdutoListagemDTO>> ProdutoListagem(string nome,bool mostrarInativos)
+        {
+            try
+            {
+                var listarMateriaPrima = _produtoRepositorio.ListarMateriaPrima(nome,mostrarInativos,EnumTipoProduto.MATERIA_PRIMA );
+                return Ok(listarMateriaPrima);
+            }
+            catch (Exception e) 
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        private ActionResult<List<ProdutoListagemDTO>> Ok(Func<string, string, string, ActionResult<List<ProdutoListagemDTO>>> produtoListagem)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
