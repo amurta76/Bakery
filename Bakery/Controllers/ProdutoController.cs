@@ -170,7 +170,7 @@ namespace Bakery.Controllers
         {
             try
             {
-                var listarprodutofinal = _produtoRepositorio.ListarProdutosFinal(nome, mostrarInativos, EnumTipoProduto.MATERIA_PRIMA);
+                var listarprodutofinal = _produtoRepositorio.ListarProdutosFinal(nome, mostrarInativos);
                 return Ok(ListarProdutoFinal);
             }
             catch (Exception e)
