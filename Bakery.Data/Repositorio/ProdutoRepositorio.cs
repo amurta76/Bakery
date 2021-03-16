@@ -36,14 +36,16 @@ namespace Bakery.Data.Repositorio
                 UnidadedeMedida = s.UnidadeMedida,
                 Id = s.Id
 
-            }).OrderBy(x => x.Nome).ToList();
-
-            
-
+            }).OrderBy(x => x.Nome).ToList();          
 
         }
 
         public object ProdutoListagem(string nome, object mostrarInativos)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool VerificaEstoqueQuantidadeMateiraPrima(decimal quantidade)
         {
             throw new System.NotImplementedException();
         }

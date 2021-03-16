@@ -6,8 +6,6 @@ using System.Text;
 namespace Bakery.Data.Interface
 {
    public interface IEstoqueRepositorio : IBaseRepositorio<Estoque>
-    {
-
-        bool VerificaEstoqueQuantidadeMateiraPrima(ProdutoMateriaPrima materiaPrima, decimal quantidade);
+    {        
     }
 }

@@ -34,8 +34,7 @@ namespace Bakery.Controllers
             foreach (var item in produto.Receita)
             {
                 //verifica estoque materia prima
-                if (!_estoqueRepositorio.VerificaEstoqueQuantidadeMateiraPrima(item.MateriaPrima,
-                                                                                item.Quantidade * produto.QuantidadeEstoque))
+                if (!_produtoRepositorio.VerificaEstoqueQuantidadeMateiraPrima(item.Quantidade * produto.QuantidadeEstoque))
                 {
                     return BadRequest($"Não possui estoque suficiente para o produto {item.MateriaPrima.Nome}");
                 }
