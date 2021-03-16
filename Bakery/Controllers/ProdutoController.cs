@@ -110,7 +110,7 @@ namespace Bakery.Controllers
         [ProducesResponseType(401)] //Não autorizado
         [ProducesResponseType(403)] //Proibido        
         [ProducesResponseType(500)] //Erro interno do servidor
-        public IActionResult Post([FromBody] Produto produto)
+        public IActionResult Post([FromBody] ProdutoMateriaPrima produto)
         {
             return IncluirProduto(produto);
         }
