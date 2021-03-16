@@ -44,7 +44,7 @@ namespace Bakery.Controllers
                 }
             }
 
-
+            //cria a movimentacao de estoque do produto final
             Estoque estoque = new Estoque()
             {
                 Produto = produtoFinalProduzido,
@@ -60,6 +60,7 @@ namespace Bakery.Controllers
             foreach (var item in produtoFinalProduzido.Receita)
             {
                 ProdutoMateriaPrima produtoMateriaPrima = (ProdutoMateriaPrima)_produtoRepositorio.Selecionar(produtoParaProduzir.Id);
+                //cria a movimentacao de estoque do produto materia prima
                 Estoque estoqueMateiraPrima = new Estoque()
                 {
                     Produto = produtoMateriaPrima,
