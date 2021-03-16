@@ -1,6 +1,7 @@
 ﻿using Bakery.Data.Interface;
 using Bakery.Dominio;
 using Bakery.Dominio.Enum;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Bakery.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "ADMINISTRADOR, PADEIRO")]
     public class ProducaoController : ControllerBase
     {
         private readonly IProdutoRepositorio _produtoRepositorio;
