@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Bakery.Data.Interface;
+using Bakery.Data.Repository;
+using Bakery.Dominio;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,6 +10,6 @@ namespace Bakery.Data.Repositorio
     public class CaixaRepositorio : BaseRepositorio <Caixa>, ICaixaRepositorio
 
     {
-        public EstoqueRepositorio(Contexto contexto) : base(contexto) { }
+        public CaixaRepositorio(Contexto contexto) : base(contexto) { }
     }
 }
