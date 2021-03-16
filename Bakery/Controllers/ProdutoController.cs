@@ -21,6 +21,9 @@ namespace Bakery.Controllers
 
         private readonly IEstoqueRepositorio _estoqueRepositorio;
         private readonly IIngredienteRepositorio _ingredienteRepositorio;
+        private object listaMateriaPrima;
+
+        public object ListarProdutoFinal { get; private set; }
 
         public ProdutoController(IProdutoRepositorio produtoRepositorio,
                                  IEstoqueRepositorio estoqueRepositorio,
@@ -132,7 +135,7 @@ namespace Bakery.Controllers
         [HttpGet()]
         [Route("ListarMateriasPrimas")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
-        [ProducesResponseType(200)] // Ok        
+        [ProducesResponseType(200)] //Ok        
         [ProducesResponseType(401)] //Não autorizado
         [ProducesResponseType(403)] //Proibido        
         [ProducesResponseType(500)] //Erro interno do servidor
@@ -140,8 +143,8 @@ namespace Bakery.Controllers
         {
             try
             {
-                var listarMateriaPrima = _produtoRepositorio.ListarMateriaPrima(nome, mostrarInativos, EnumTipoProduto.MATERIA_PRIMA);
-                return Ok(listarMateriaPrima);
+                var ListarMateriaPrima = _produtoRepositorio.ListarMateriaPrima(nome, mostrarInativos, EnumTipoProduto.MATERIA_PRIMA);
+                return Ok(listaMateriaPrima);
             }
             catch (Exception e)
             {
@@ -150,7 +153,40 @@ namespace Bakery.Controllers
             }
         }
 
-      
+        private ActionResult<List<ProdutoListagemDTO>> ok(object listaMateriaPrima)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet()]
+        [Route("ListarProdutosFinais")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(200)] //Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido
+        [ProducesResponseType(500)] //Erro Interno do servidor
+
+        public ActionResult<List<ProdutoFinalListagemDTO>> ProdutoFinal(string nome, bool mostrarInativos)
+        {
+            try
+            {
+                var listarprodutofinal = _produtoRepositorio.ListarProdutosFinal(nome, mostrarInativos, EnumTipoProduto.MATERIA_PRIMA);
+                return Ok(ListarProdutoFinal);
+            }
+            catch (Exception e)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+        }
+
+        
+        
+
+
+
+
         #endregion
 
         #region ProdutoFinal
