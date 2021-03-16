@@ -42,6 +42,7 @@ namespace Bakery.Controllers
         {
             try
             {
+
                 _caixaRepositorio.Incluir(caixa);
                 return Ok("Caixa Aberto");
 

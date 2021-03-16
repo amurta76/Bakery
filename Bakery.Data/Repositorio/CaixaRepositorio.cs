@@ -11,5 +11,7 @@ namespace Bakery.Data.Repositorio
 
     {
         public CaixaRepositorio(Contexto contexto) : base(contexto) { }
+
+        
     }
 }
