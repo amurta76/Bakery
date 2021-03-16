@@ -28,11 +28,11 @@ namespace Bakery.Controllers
             try
             {
                 if (!login.ValidaLogin())
-                    return BadRequest("Email e/ou senha não devem ser vazias ");
+                    return BadRequest("Email e/ou senha não devem ser vazias.");
                 
                 var usuario = _usuarioRepositorio.Login(login);
                 if (usuario == null)
-                    return NotFound("Email e/ou senha inválido(s)");
+                    return NotFound("Email e/ou senha não corresponde(m).");
 
                 var token =  TokenService.GerarToken(usuario);
 
