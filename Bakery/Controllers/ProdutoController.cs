@@ -105,7 +105,29 @@ namespace Bakery.Controllers
         public IActionResult Put(int id, [FromBody] Produto produto)
         {
             return AlterarProduto(id, produto);
-            
+
+        }
+
+        [HttpGet()]
+        [Route("ListarMateriasPrimas")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        public ActionResult<List<ProdutoListagemDTO>> ProdutoListagem(string nome, bool mostrarInativos)
+        {
+            try
+            {
+                var listarMateriaPrima = _produtoRepositorio.ListarMateriaPrima(nome, mostrarInativos, EnumTipoProduto.MATERIA_PRIMA);
+                return Ok(listarMateriaPrima);
+            }
+            catch (Exception e)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        private ActionResult<List<ProdutoListagemDTO>> Ok(Func<string, string, string, ActionResult<List<ProdutoListagemDTO>>> produtoListagem)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -137,7 +159,7 @@ namespace Bakery.Controllers
         public IActionResult Put(int id, [FromBody] ProdutoFinalProduzido produto)
         {
             if (VerificarEstoqueMateriaPrima(produto))
-            {                
+            {
                 return AlterarProdutoFinal(id, produto);
             }
             else
@@ -156,28 +178,7 @@ namespace Bakery.Controllers
             }
             else
                 return BadRequest("Existem matérias-primas da receita que estão inativas ou com quantidades inválidas.");
-        }
-        [HttpGet()]
-        [Route("ListarMateriasPrimas")]
-        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
-        public ActionResult<List<ProdutoListagemDTO>> ProdutoListagem(string nome,bool mostrarInativos)
-        {
-            try
-            {
-                var listarMateriaPrima = _produtoRepositorio.ListarMateriaPrima(nome,mostrarInativos,EnumTipoProduto.MATERIA_PRIMA );
-                return Ok(listarMateriaPrima);
-            }
-            catch (Exception e) 
-            {
-
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
-        }
-
-        private ActionResult<List<ProdutoListagemDTO>> Ok(Func<string, string, string, ActionResult<List<ProdutoListagemDTO>>> produtoListagem)
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         #endregion
 
@@ -272,7 +273,7 @@ namespace Bakery.Controllers
             }
             return true;
         }
-       
+
         #endregion
 
     }
