@@ -139,11 +139,11 @@ namespace Bakery.Controllers
         [ProducesResponseType(401)] //Não autorizado
         [ProducesResponseType(403)] //Proibido        
         [ProducesResponseType(500)] //Erro interno do servidor
-        public ActionResult<List<ProdutoListagemDTO>> ProdutoListagem(string nome, bool mostrarInativos)
+        public ActionResult<List<ProdutoListagemDTO>> ListarMateriasPrimas(string nome, bool mostrarInativos)
         {
             try
             {
-                var ListarMateriaPrima = _produtoRepositorio.ListarMateriaPrima(nome, mostrarInativos, EnumTipoProduto.MATERIA_PRIMA);
+                var ListarMateriaPrima = _produtoRepositorio.ListarMateriasPrima(nome, mostrarInativos );
                 return Ok(listaMateriaPrima);
             }
             catch (Exception e)
