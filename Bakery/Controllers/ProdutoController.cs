@@ -64,7 +64,7 @@ namespace Bakery.Controllers
                     {
                         if (!_ingredienteRepositorio.MateriaPrimaSemProdutoFinal(produto.Id))
                         {
-                            return BadRequest("Materia Prima utlizada em Produtos Finais Produzidos. Não pode ser inativada.");
+                            return BadRequest("Materia-prima utlizada em produtos finais produzidos. Não pode ser inativada.");
                         }
                     }
 
@@ -83,9 +83,9 @@ namespace Bakery.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, [FromBody] Produto produto)
         {
-            return BadRequest("Não é permitido a exclusão de matérias-primas.");
+            return BadRequest("Não é permitido a exclusão de produtos.");
         }
 
 
@@ -103,6 +103,7 @@ namespace Bakery.Controllers
         public IActionResult Put(int id, [FromBody] Produto produto)
         {
             return AlterarProduto(id, produto);
+            
         }
         #endregion
 
@@ -130,28 +131,29 @@ namespace Bakery.Controllers
 
         [HttpPut()]
         [Route("FinalProduzido/{id}")]
-        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [Authorize(Roles = "ADMINISTRADOR, PADEIRO")]
         public IActionResult Put(int id, [FromBody] ProdutoFinalProduzido produto)
         {
             if (VerificarEstoqueMateriaPrima(produto))
-            {
+            {                
                 return AlterarProdutoFinal(id, produto);
             }
             else
-                return BadRequest("Existem matérias - primas da receita que estão inativas ou com quantidades inválidas.");
+                return BadRequest("Existem matérias-primas da receita que estão inativas ou com quantidades inválidas.");
         }
 
         [HttpPost]
         [Route("FinalProduzido")]
-        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [Authorize(Roles = "ADMINISTRADOR, PADEIRO")]
         public IActionResult Post([FromBody] ProdutoFinalProduzido produto)
         {
             if (VerificarEstoqueMateriaPrima(produto))
             {
+
                 return IncluirProdutoFinal(produto);
             }
             else
-                return BadRequest("Existem matérias - primas da receita que estão inativas ou com quantidades inválidas.");
+                return BadRequest("Existem matérias-primas da receita que estão inativas ou com quantidades inválidas.");
         }
 
         #endregion
@@ -247,7 +249,7 @@ namespace Bakery.Controllers
             }
             return true;
         }
-
+       
         #endregion
 
     }
