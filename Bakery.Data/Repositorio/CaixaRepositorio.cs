@@ -18,11 +18,13 @@ namespace Bakery.Data.Repositorio
             var contagem = _contexto.Set<Caixa>()                              
                      .Where(ca => ca.Situacao == true).Count();
 
+
             if (contagem > 0)
                 return false;
             else
                 return true;
           
+
         }
     }
 }
