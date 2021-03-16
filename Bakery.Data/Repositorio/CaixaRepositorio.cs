@@ -12,6 +12,9 @@ namespace Bakery.Data.Repositorio
     {
         public CaixaRepositorio(Contexto contexto) : base(contexto) { }
 
-        
+        public bool VerificaExistenciaDeCaixaEmAberto()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

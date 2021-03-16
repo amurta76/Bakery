@@ -28,6 +28,11 @@ namespace Bakery.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido
+        [ProducesResponseType(404)] //Não encontrado
+        [ProducesResponseType(500)] //Erro interno do servidor
         public ActionResult<Estoque> Get(int id)
         {
             try
@@ -46,6 +51,10 @@ namespace Bakery.Controllers
         // POST api/<EstoqueController>
         [HttpPost]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Post([FromBody] Estoque estoque)
         {
             try
@@ -75,6 +84,11 @@ namespace Bakery.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(400)] //Requisição inválida
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Put(int id, [FromBody] Estoque estoque)
         {
             return BadRequest("Não é permitido a alteração do estoque.");
@@ -82,6 +96,9 @@ namespace Bakery.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(400)] //Requisição inválida    
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido  
         public IActionResult Delete(int id)
         {
             return BadRequest("Não é permitido a alteração do estoque.");
