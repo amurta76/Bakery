@@ -21,7 +21,6 @@ namespace Bakery.Controllers
 
         private readonly IEstoqueRepositorio _estoqueRepositorio;
         private readonly IIngredienteRepositorio _ingredienteRepositorio;
-        private object mostrarInativos;
 
         public ProdutoController(IProdutoRepositorio produtoRepositorio,
                                  IEstoqueRepositorio estoqueRepositorio,
@@ -34,6 +33,11 @@ namespace Bakery.Controllers
 
 
         [HttpGet("{id}")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido
+        [ProducesResponseType(404)] //Não encontrado
+        [ProducesResponseType(500)] //Erro interno do servidor
         public ActionResult<Produto> Get(int id)
         {
             try
@@ -56,6 +60,11 @@ namespace Bakery.Controllers
         [HttpPut()]
         [Route("Inativar/{id}")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(400)] //Requisição inválida
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Inativar(int id, [FromBody] Produto produto)
         {
             try
@@ -85,6 +94,9 @@ namespace Bakery.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(400)] //Requisição inválida    
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
         public IActionResult Delete(int id, [FromBody] Produto produto)
         {
             return BadRequest("Não é permitido a exclusão de produtos.");
@@ -94,6 +106,10 @@ namespace Bakery.Controllers
         #region MateriaPrima
         [HttpPost]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Post([FromBody] Produto produto)
         {
             return IncluirProduto(produto);
@@ -102,6 +118,11 @@ namespace Bakery.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(400)] //Requisição inválida
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Put(int id, [FromBody] Produto produto)
         {
             return AlterarProduto(id, produto);
@@ -111,6 +132,10 @@ namespace Bakery.Controllers
         [HttpGet()]
         [Route("ListarMateriasPrimas")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(200)] // Ok        
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public ActionResult<List<ProdutoListagemDTO>> ProdutoListagem(string nome, bool mostrarInativos)
         {
             try
@@ -125,10 +150,7 @@ namespace Bakery.Controllers
             }
         }
 
-        private ActionResult<List<ProdutoListagemDTO>> Ok(Func<string, string, string, ActionResult<List<ProdutoListagemDTO>>> produtoListagem)
-        {
-            throw new NotImplementedException();
-        }
+      
         #endregion
 
         #region ProdutoFinal
@@ -136,6 +158,11 @@ namespace Bakery.Controllers
         [HttpPut()]
         [Route("Final/{id}")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(400)] //Requisição inválida
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Put(int id, [FromBody] ProdutoFinal produto)
         {
             return AlterarProdutoFinal(id, produto);
@@ -144,6 +171,10 @@ namespace Bakery.Controllers
         [HttpPost]
         [Route("Final")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Post([FromBody] ProdutoFinal produto)
         {
             return IncluirProdutoFinal(produto);
@@ -156,6 +187,11 @@ namespace Bakery.Controllers
         [HttpPut()]
         [Route("FinalProduzido/{id}")]
         [Authorize(Roles = "ADMINISTRADOR, PADEIRO")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(400)] //Requisição inválida
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Put(int id, [FromBody] ProdutoFinalProduzido produto)
         {
             if (VerificarEstoqueMateriaPrima(produto))
@@ -169,6 +205,10 @@ namespace Bakery.Controllers
         [HttpPost]
         [Route("FinalProduzido")]
         [Authorize(Roles = "ADMINISTRADOR, PADEIRO")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Post([FromBody] ProdutoFinalProduzido produto)
         {
             if (VerificarEstoqueMateriaPrima(produto))
@@ -275,6 +315,5 @@ namespace Bakery.Controllers
         }
 
         #endregion
-
     }
 }

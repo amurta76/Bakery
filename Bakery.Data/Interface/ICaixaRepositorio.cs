@@ -7,6 +7,6 @@ namespace Bakery.Data.Interface
 {
   public  interface ICaixaRepositorio : IBaseRepositorio <Caixa>  
     {
-        VerificaExistenciaDeCaixaEmAberto();
+       bool VerificaExistenciaDeCaixaEmAberto();
     }
 }

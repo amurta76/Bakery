@@ -7,11 +7,11 @@ using System.Text;
 
 namespace Bakery.Data.Repositorio
 {
-    public class EstoqueRepositorio : BaseRepositorio<Estoque> ,IEstoqueRepositorio
+    public class EstoqueRepositorio : BaseRepositorio<Estoque>, IEstoqueRepositorio
     {
         public EstoqueRepositorio(Contexto contexto): base(contexto) 
         {
-
-        }
+        }              
+               
     }
 }

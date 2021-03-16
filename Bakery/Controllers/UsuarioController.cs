@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bakery.Controllers
 {
@@ -24,6 +22,11 @@ namespace Bakery.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido
+        [ProducesResponseType(404)] //Não encontrado
+        [ProducesResponseType(500)] //Erro interno do servidor
         public ActionResult<Usuario> Get(int id)
         {
             try
@@ -44,6 +47,10 @@ namespace Bakery.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Post([FromBody] Usuario usuario)
         {
             try
@@ -58,6 +65,11 @@ namespace Bakery.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(400)] //Requisição inválida
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Put(int id, [FromBody] Usuario usuario)
         {
             try
@@ -77,6 +89,10 @@ namespace Bakery.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(200)] // Ok        
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Delete(int id)
         {
             try
@@ -91,6 +107,10 @@ namespace Bakery.Controllers
         }
         [HttpGet()]
         [Route("ListarUsuario")]
+        [ProducesResponseType(200)] // Ok        
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public ActionResult<List<UsuarioDTO>> ListarUsuario(string nome, string email) 
         {
             try

@@ -13,9 +13,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -45,7 +48,60 @@ namespace Bakery
             services.AddScoped<IIngredienteRepositorio, IngredienteRepositorio>();
             services.AddScoped<IEstoqueRepositorio, EstoqueRepositorio>();
 
-            services.AddAuthentication(a => {
+
+
+            services.AddSwaggerGen(c =>
+            {
+
+
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Bakery",
+                    Description = "Sistema de controle de estoque e venda para padarias",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Trilha C# Campinas Tech Talent - Grupo1",
+                        Email = string.Empty,
+                        Url = new Uri("http://campinas.tech/campinas-tech-talents/")
+                    }
+
+                });
+
+              
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = @"Autorização JWT ",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                      new OpenApiSecurityScheme
+                      {
+                        Reference = new OpenApiReference
+                          {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                          },
+                          Scheme = "oauth2",
+                          Name = "Bearer",
+                          In = ParameterLocation.Header,
+
+                        },
+                        new List<string>()
+                    }
+                });
+
+
+            });
+
+
+            services.AddAuthentication(a =>
+            {
                 a.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 a.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
@@ -71,6 +127,13 @@ namespace Bakery
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Bakery");
+
+            });
 
             app.UseHttpsRedirection();
 
