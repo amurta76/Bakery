@@ -15,15 +15,14 @@ namespace Bakery.Data.Repositorio
 
         public bool VerificaExistenciaDeCaixaEmAberto()
         {
-            //var contagem = _contexto.Set<Caixa>()
-            //                .Where(ca => ca.Id == IdCaixa &&
-            //                            ca.ProdutoFinalProduzido.Situacao == true).Count();
+            var contagem = _contexto.Set<Caixa>()                              
+                     .Where(ca => ca.Situacao == true).Count();
 
-            //if (contagem > 0)
-            //    return false;
-            //else
-            //    return true;
-            return true
+            if (contagem > 0)
+                return false;
+            else
+                return true;
+          
         }
     }
 }
