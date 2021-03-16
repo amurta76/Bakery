@@ -40,15 +40,6 @@ namespace Bakery.Data.Repositorio
 
         }
 
-        public object ProdutoListagem(string nome, object mostrarInativos)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool VerificaEstoqueQuantidadeMateiraPrima(decimal quantidade)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 
 

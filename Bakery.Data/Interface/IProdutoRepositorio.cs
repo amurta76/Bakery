@@ -11,9 +11,6 @@ namespace Bakery.Data.Interface
     {
         decimal BuscarQuantidadeEstoque(int id);
         List<ProdutoListagemDTO> ListarMateriaPrima(string nome, bool mostrarInativos,EnumTipoProduto tipoProduto);
-        object ProdutoListagem(string nome, object mostrarInativos);
-
-        public bool VerificaEstoqueQuantidadeMateiraPrima(decimal quantidade);
 
     }
 }

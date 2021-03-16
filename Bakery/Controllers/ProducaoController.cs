@@ -26,27 +26,30 @@ namespace Bakery.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] ProdutoFinalProduzido produto)
+        public IActionResult Post([FromBody] ProdutoFinalProduzido produtoParaProduzir)
         {
+
+            //busca o Produto final da base, para pegar os dados atualizados de receita
+            ProdutoFinalProduzido produtoFinalProduzido = (ProdutoFinalProduzido)_produtoRepositorio.Selecionar(produtoParaProduzir.Id);
+
             //QuantidadeEstoque = qtd para Produzir
 
             // para verificacao
-            foreach (var item in produto.Receita)
+            foreach (var item in produtoFinalProduzido.Receita)
             {
                 //verifica estoque materia prima
-                if (!_produtoRepositorio.VerificaEstoqueQuantidadeMateiraPrima(item.Quantidade * produto.QuantidadeEstoque))
+                if (!item.MateriaPrima.VerificaEstoqueQuantidadeMateiraPrima(item.Quantidade * produtoParaProduzir.QuantidadeEstoque))
                 {
                     return BadRequest($"Não possui estoque suficiente para o produto {item.MateriaPrima.Nome}");
                 }
             }
 
-            ProdutoFinalProduzido produtoFinalProduzido = (ProdutoFinalProduzido)_produtoRepositorio.Selecionar(produto.Id);
 
             Estoque estoque = new Estoque()
             {
                 Produto = produtoFinalProduzido,
                 Data = new DateTime(),
-                Quantidade = produto.QuantidadeEstoque,
+                Quantidade = produtoParaProduzir.QuantidadeEstoque,
                 TipoEstoque = EnumTipoEstoque.ENTRADA
             };
             _estoqueRepositorio.Incluir(estoque);
@@ -54,14 +57,14 @@ namespace Bakery.Controllers
             
 
             // para retirada do estoque
-            foreach (var item in produto.Receita)
+            foreach (var item in produtoFinalProduzido.Receita)
             {
-                ProdutoMateriaPrima produtoMateriaPrima = (ProdutoMateriaPrima)_produtoRepositorio.Selecionar(produto.Id);
+                ProdutoMateriaPrima produtoMateriaPrima = (ProdutoMateriaPrima)_produtoRepositorio.Selecionar(produtoParaProduzir.Id);
                 Estoque estoqueMateiraPrima = new Estoque()
                 {
                     Produto = produtoMateriaPrima,
                     Data = new DateTime(),
-                    Quantidade = produto.QuantidadeEstoque * item.Quantidade,
+                    Quantidade = produtoParaProduzir.QuantidadeEstoque * item.Quantidade,
                     TipoEstoque = EnumTipoEstoque.SAIDA
                 };
                 _estoqueRepositorio.Incluir(estoqueMateiraPrima);

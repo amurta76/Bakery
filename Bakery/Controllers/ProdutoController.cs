@@ -21,7 +21,6 @@ namespace Bakery.Controllers
 
         private readonly IEstoqueRepositorio _estoqueRepositorio;
         private readonly IIngredienteRepositorio _ingredienteRepositorio;
-        private object mostrarInativos;
 
         public ProdutoController(IProdutoRepositorio produtoRepositorio,
                                  IEstoqueRepositorio estoqueRepositorio,
