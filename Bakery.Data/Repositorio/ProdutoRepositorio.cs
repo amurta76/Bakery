@@ -64,6 +64,11 @@ namespace Bakery.Data.Repositorio
         }
 
 
+        public ProdutoFinalProduzido SelecionarProdutoFinalProduzido(int id)
+        {
+            return _contexto.Set<ProdutoFinalProduzido>().Include( p => p.Receita ).FirstOrDefault(x => x.Id == id);
+        }
+
     }
 }
 

@@ -18,6 +18,8 @@ namespace Bakery.Data.Map
 
             builder.Property(x => x.DataAbertura).IsRequired();
 
+            builder.Property(x => x.DataFechameto).IsRequired(false);
+
             builder.Property(x => x.IdUsuario).IsRequired();
 
             builder.Property(x => x.SituacaoCaixa).IsRequired();
