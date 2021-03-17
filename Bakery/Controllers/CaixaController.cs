@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bakery.Data.Interface;
 using Bakery.Dominio;
+using Bakery.Dominio.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,8 +17,13 @@ namespace Bakery.Controllers
     public class CaixaController : Controller
     {
         private readonly ICaixaRepositorio _caixaRepositorio;
-        public CaixaController(ICaixaRepositorio caixaRepositorio) {
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
+
+        public CaixaController(ICaixaRepositorio caixaRepositorio, IUsuarioRepositorio usuarioRepositorio)
+
+        {
             _caixaRepositorio = caixaRepositorio;
+            _usuarioRepositorio = usuarioRepositorio;
         }
 
 
@@ -37,8 +43,8 @@ namespace Bakery.Controllers
 
         // POST api/<controller>
         [HttpPost]
-    ////   [Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
-        public IActionResult Post([FromBody]Caixa caixa)
+        ////   [Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
+        public IActionResult Post([FromBody] Caixa caixa)
         {
             try
             {
@@ -46,20 +52,27 @@ namespace Bakery.Controllers
                 {
                     return BadRequest("Não foi possível abrir o caixa, pois tem um caixa aberto");
                 }
+                var usuario = _usuarioRepositorio.Selecionar(caixa.IdUsuario);
+                if (usuario.PerfilUsuario != EnumPerfilUsuario.ADMINISTRADOR && 
+                    usuario.PerfilUsuario != EnumPerfilUsuario.VENDEDOR) 
+                {
+                    return BadRequest("Não é possível abrir o caixa para esse usuário");
+                }
                 _caixaRepositorio.Incluir(caixa);
                 return Ok("Caixa Aberto");
 
+                
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
 
-        } 
+        }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 
