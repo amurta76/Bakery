@@ -342,7 +342,7 @@ namespace Bakery.Controllers
             {
                 var ingrediente = _produtoRepositorio.Selecionar(item.IdMateriaPrima);
 
-                if (!ingrediente.Situacao || item.ValidaQuantidade())
+                if (!ingrediente.Situacao || !item.ValidaQuantidade())
                 {
                     return false;
                 }

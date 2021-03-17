@@ -32,15 +32,15 @@ namespace Bakery.Controllers
         {
 
             //busca o Produto final da base, para pegar os dados atualizados de receita
-            ProdutoFinalProduzido produtoFinalProduzido = (ProdutoFinalProduzido)_produtoRepositorio.Selecionar(produtoParaProduzir.Id);
+            ProdutoFinalProduzido produtoFinalProduzido = _produtoRepositorio.SelecionarProdutoFinalProduzido(produtoParaProduzir.Id);
 
             //QuantidadeEstoque = qtd para Produzir
-
             // para verificacao
             foreach (var item in produtoFinalProduzido.Receita)
             {
                 //verifica estoque materia prima
-                if (!item.MateriaPrima.VerificaEstoqueQuantidadeMateiraPrima(item.Quantidade * produtoParaProduzir.QuantidadeEstoque))
+                ProdutoMateriaPrima materiaPrima = (ProdutoMateriaPrima) _produtoRepositorio.Selecionar(item.IdMateriaPrima);
+                if (!materiaPrima.VerificaEstoqueQuantidadeMateiraPrima(item.Quantidade * produtoParaProduzir.QuantidadeEstoque))
                 {
                     return BadRequest($"Não possui estoque suficiente para o produto {item.MateriaPrima.Nome}");
                 }
@@ -61,18 +61,18 @@ namespace Bakery.Controllers
             // para retirada do estoque
             foreach (var item in produtoFinalProduzido.Receita)
             {
-                ProdutoMateriaPrima produtoMateriaPrima = (ProdutoMateriaPrima)_produtoRepositorio.Selecionar(produtoParaProduzir.Id);
+                ProdutoMateriaPrima materiaPrima = (ProdutoMateriaPrima)_produtoRepositorio.Selecionar(item.IdMateriaPrima);
                 //cria a movimentacao de estoque do produto materia prima
                 Estoque estoqueMateiraPrima = new Estoque()
                 {
-                    Produto = produtoMateriaPrima,
+                    Produto = materiaPrima,
                     Data = new DateTime(),
                     Quantidade = produtoParaProduzir.QuantidadeEstoque * item.Quantidade,
                     TipoEstoque = EnumTipoEstoque.SAIDA
                 };
                 _estoqueRepositorio.Incluir(estoqueMateiraPrima);
-                produtoMateriaPrima.QuantidadeEstoque -= estoqueMateiraPrima.Quantidade;
-                _produtoRepositorio.Alterar(produtoMateriaPrima);
+                materiaPrima.QuantidadeEstoque -= estoqueMateiraPrima.Quantidade;
+                _produtoRepositorio.Alterar(materiaPrima);
             }
 
             _produtoRepositorio.Alterar(produtoFinalProduzido);
