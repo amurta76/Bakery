@@ -13,5 +13,6 @@ namespace Bakery.Data.Interface
         List<ProdutoListagemDTO> ListarMateriasPrima(string nome, bool mostrarInativos);
         List<ProdutoFinalListagemDTO> ListarProdutosFinal(string nome, bool mostrarInativos);
         ProdutoFinalProduzido SelecionarProdutoFinalProduzido(int id);
+
     }
 }
