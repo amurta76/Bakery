@@ -10,7 +10,8 @@ namespace Bakery.Data.Interface
     public interface IProdutoRepositorio : IBaseRepositorio<Produto>
     {
         decimal BuscarQuantidadeEstoque(int id);
-        List<ProdutoListagemDTO> ListarMateriaPrima(string nome, bool mostrarInativos,EnumTipoProduto tipoProduto);
-
+        List<ProdutoListagemDTO> ListarMateriasPrima(string nome, bool mostrarInativos);
+        List<ProdutoFinalListagemDTO> ListarProdutosFinal(string nome, bool mostrarInativos);
+         
     }
 }

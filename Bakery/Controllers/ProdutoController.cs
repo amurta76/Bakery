@@ -21,6 +21,9 @@ namespace Bakery.Controllers
 
         private readonly IEstoqueRepositorio _estoqueRepositorio;
         private readonly IIngredienteRepositorio _ingredienteRepositorio;
+        private object listaMateriaPrima;
+
+        public object ListarProdutoFinal { get; private set; }
 
         public ProdutoController(IProdutoRepositorio produtoRepositorio,
                                  IEstoqueRepositorio estoqueRepositorio,
@@ -110,7 +113,7 @@ namespace Bakery.Controllers
         [ProducesResponseType(401)] //Não autorizado
         [ProducesResponseType(403)] //Proibido        
         [ProducesResponseType(500)] //Erro interno do servidor
-        public IActionResult Post([FromBody] Produto produto)
+        public IActionResult Post([FromBody] ProdutoMateriaPrima produto)
         {
             return IncluirProduto(produto);
         }
@@ -132,16 +135,16 @@ namespace Bakery.Controllers
         [HttpGet()]
         [Route("ListarMateriasPrimas")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
-        [ProducesResponseType(200)] // Ok        
+        [ProducesResponseType(200)] //Ok        
         [ProducesResponseType(401)] //Não autorizado
         [ProducesResponseType(403)] //Proibido        
         [ProducesResponseType(500)] //Erro interno do servidor
-        public ActionResult<List<ProdutoListagemDTO>> ProdutoListagem(string nome, bool mostrarInativos)
+        public ActionResult<List<ProdutoListagemDTO>> ListarMateriasPrimas(string nome, bool mostrarInativos)
         {
             try
             {
-                var listarMateriaPrima = _produtoRepositorio.ListarMateriaPrima(nome, mostrarInativos, EnumTipoProduto.MATERIA_PRIMA);
-                return Ok(listarMateriaPrima);
+                var ListarMateriaPrima = _produtoRepositorio.ListarMateriasPrima(nome, mostrarInativos );
+                return Ok(listaMateriaPrima);
             }
             catch (Exception e)
             {
@@ -150,7 +153,40 @@ namespace Bakery.Controllers
             }
         }
 
-      
+        private ActionResult<List<ProdutoListagemDTO>> ok(object listaMateriaPrima)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet()]
+        [Route("ListarProdutosFinais")]
+        [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
+        [ProducesResponseType(200)] //Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido
+        [ProducesResponseType(500)] //Erro Interno do servidor
+
+        public ActionResult<List<ProdutoFinalListagemDTO>> ProdutoFinal(string nome, bool mostrarInativos)
+        {
+            try
+            {
+                var listarprodutofinal = _produtoRepositorio.ListarProdutosFinal(nome, mostrarInativos);
+                return Ok(ListarProdutoFinal);
+            }
+            catch (Exception e)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+        }
+
+        
+        
+
+
+
+
         #endregion
 
         #region ProdutoFinal

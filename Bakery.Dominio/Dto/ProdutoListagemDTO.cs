@@ -12,4 +12,4 @@ namespace Bakery.Dominio.Dto
         public Decimal Quantidade { get; set; }
         
     }
-}
+}  

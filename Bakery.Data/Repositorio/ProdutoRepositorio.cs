@@ -20,13 +20,13 @@ namespace Bakery.Data.Repositorio
             return produto.QuantidadeEstoque;
         }
 
-        public List<ProdutoListagemDTO> ListarMateriaPrima(string nome, bool mostrarInativos,EnumTipoProduto tipoProduto )
+        public List<ProdutoListagemDTO> ListarMateriasPrima(string nome, bool mostrarInativos)
         {
             List<Produto> listamateriaprima = new List<Produto>(0);
-           
-                listamateriaprima = _contexto.Set<Produto>().Where(u => u.TipoProduto == tipoProduto && (u.Nome == nome || string.IsNullOrEmpty(nome))
-                                                                            && (u.Situacao == !mostrarInativos|| mostrarInativos)).ToList();
-           
+
+            listamateriaprima = _contexto.Set<Produto>().Where(u => u.TipoProduto == EnumTipoProduto.MATERIA_PRIMA && (u.Nome == nome || string.IsNullOrEmpty(nome))
+                                                                        && (u.Situacao == !mostrarInativos || mostrarInativos)).ToList();
+
             return listamateriaprima.Select(s =>
 
             new ProdutoListagemDTO()
@@ -36,11 +36,36 @@ namespace Bakery.Data.Repositorio
                 UnidadedeMedida = s.UnidadeMedida,
                 Id = s.Id
 
-            }).OrderBy(x => x.Nome).ToList();          
+            }).OrderBy(x => x.Nome).ToList();
+
+        }
+        public List<ProdutoFinalListagemDTO> ListarProdutosFinal(string nome, bool mostrarInativos)
+        {
+            List<Produto> listaprodutofinal = new List<Produto>(0);
+            List<EnumTipoProduto> tiposProduto = new List<EnumTipoProduto>(0);
+            tiposProduto.Add(EnumTipoProduto.PRODUZIDO);
+            tiposProduto.Add(EnumTipoProduto.TERCERIZADO);
+
+            listaprodutofinal = _contexto.Set<Produto>().Where(u => tiposProduto.Contains(u.TipoProduto) && (u.Nome == nome || string.IsNullOrEmpty(nome))
+                                                                        && (u.Situacao == !mostrarInativos || mostrarInativos)).ToList();
+
+            return (List<ProdutoFinalListagemDTO>)listaprodutofinal.Select(s =>
+
+            new ProdutoFinalListagemDTO()
+            {
+                Nome = s.Nome,
+                Tipo = s.TipoProduto.ToString(),
+                Quantidade = s.QuantidadeEstoque,
+                UnidadedeMedida = s.UnidadeMedida,
+                Id = s.Id
+
+            }).OrderBy(x => x.Nome).ToList();
 
         }
 
+
     }
-
-
 }
+
+
+
