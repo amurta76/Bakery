@@ -89,7 +89,7 @@ namespace Bakery.Controllers
                 else
                     return BadRequest("Falha na inativação do produto.");
             }
-            catch
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
@@ -144,7 +144,7 @@ namespace Bakery.Controllers
             try
             {
                 var ListarMateriaPrima = _produtoRepositorio.ListarMateriasPrima(nome, mostrarInativos );
-                return Ok(listaMateriaPrima);
+                return Ok(ListarMateriaPrima);
             }
             catch (Exception e)
             {
@@ -153,10 +153,7 @@ namespace Bakery.Controllers
             }
         }
 
-        private ActionResult<List<ProdutoListagemDTO>> ok(object listaMateriaPrima)
-        {
-            throw new NotImplementedException();
-        }
+    
 
         [HttpGet()]
         [Route("ListarProdutosFinais")]

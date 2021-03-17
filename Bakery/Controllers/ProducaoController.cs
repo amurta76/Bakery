@@ -76,7 +76,7 @@ namespace Bakery.Controllers
             }
 
             _produtoRepositorio.Alterar(produtoFinalProduzido);
-            return Ok();
+            return Ok("O produto final produzido selecionado foi atualizado com sucesso no estoque.");
 
         }
 
