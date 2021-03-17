@@ -48,6 +48,10 @@ namespace Bakery.Controllers
         {
             try
             {
+                if (caixa == null) {
+                    return BadRequest("Não foi possível abrir o caixa, sem dados para a abertura.");
+                }
+
                 if (_caixaRepositorio.VerificaExistenciaDeCaixaEmAberto())
                 {
                     return BadRequest("Não foi possível abrir o caixa, pois já existe um caixa aberto.");
