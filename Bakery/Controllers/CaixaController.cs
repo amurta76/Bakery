@@ -50,16 +50,16 @@ namespace Bakery.Controllers
             {
                 if (_caixaRepositorio.VerificaExistenciaDeCaixaEmAberto())
                 {
-                    return BadRequest("Não foi possível abrir o caixa, pois tem um caixa aberto");
+                    return BadRequest("Não foi possível abrir o caixa, pois já existe um caixa aberto.");
                 }
                 var usuario = _usuarioRepositorio.Selecionar(caixa.IdUsuario);
                 if (usuario.PerfilUsuario != EnumPerfilUsuario.ADMINISTRADOR && 
                     usuario.PerfilUsuario != EnumPerfilUsuario.VENDEDOR) 
                 {
-                    return BadRequest("Não é possível abrir o caixa para esse usuário");
+                    return BadRequest("Não é possível abrir o caixa para esse usuário.");
                 }
                 _caixaRepositorio.Incluir(caixa);
-                return Ok("Caixa Aberto");
+                return Ok("O caixa foi aberto.");
 
                 
             }

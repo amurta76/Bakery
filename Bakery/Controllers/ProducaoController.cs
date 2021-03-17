@@ -42,7 +42,7 @@ namespace Bakery.Controllers
                 ProdutoMateriaPrima materiaPrima = (ProdutoMateriaPrima) _produtoRepositorio.Selecionar(item.IdMateriaPrima);
                 if (!materiaPrima.VerificaEstoqueQuantidadeMateiraPrima(item.Quantidade * produtoParaProduzir.QuantidadeEstoque))
                 {
-                    return BadRequest($"Não possui estoque suficiente para o produto {item.MateriaPrima.Nome}");
+                    return BadRequest($"Não possui estoque suficiente para o produto {item.MateriaPrima.Nome}.");
                 }
             }
 
