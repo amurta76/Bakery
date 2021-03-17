@@ -34,7 +34,6 @@ namespace Bakery.Controllers
             _ingredienteRepositorio = ingredienteRepositorio;
         }
 
-
         [HttpGet("{id}")]
         [ProducesResponseType(200)] // Ok
         [ProducesResponseType(401)] //Não autorizado
