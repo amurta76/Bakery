@@ -37,22 +37,25 @@ namespace Bakery.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        [Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
+    ////   [Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
         public IActionResult Post([FromBody]Caixa caixa)
         {
             try
             {
-
+                if (_caixaRepositorio.VerificaExistenciaDeCaixaEmAberto())
+                {
+                    return BadRequest("Não foi possível abrir o caixa, pois tem um caixa aberto");
+                }
                 _caixaRepositorio.Incluir(caixa);
                 return Ok("Caixa Aberto");
 
             }
-            catch (Exception)
+            catch (Exception e) 
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
 
-        }
+        } 
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
