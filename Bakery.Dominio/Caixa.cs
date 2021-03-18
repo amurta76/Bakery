@@ -17,5 +17,10 @@ namespace Bakery.Dominio
         public List<CaixaDescarte> Descartes { get; set; }
         public List<Venda> Vendas { get; set; }
 
+        public bool EstaAberto()
+        {
+            return SituacaoCaixa == EnumSitucaoCaixa.ABERTO;
+        }
     }
+  
 }

@@ -46,8 +46,9 @@ namespace Bakery.Data.Repositorio
             tiposProduto.Add(EnumTipoProduto.PRODUZIDO);
             tiposProduto.Add(EnumTipoProduto.TERCERIZADO);
 
-            listaprodutofinal = _contexto.Set<Produto>().Where(u => tiposProduto.Contains(u.TipoProduto) && (u.Nome == nome || string.IsNullOrEmpty(nome))
-                                                                        && (u.Situacao == !mostrarInativos || mostrarInativos)).ToList();
+            listaprodutofinal = _contexto.Set<Produto>().Where(u => tiposProduto.Contains(u.TipoProduto)
+                                                                    && (u.Nome == nome || string.IsNullOrEmpty(nome))
+                                                                    && (u.Situacao == !mostrarInativos || mostrarInativos)).ToList();
 
             return (List<ProdutoFinalListagemDTO>)listaprodutofinal.Select(s =>
 
@@ -66,7 +67,7 @@ namespace Bakery.Data.Repositorio
 
         public ProdutoFinalProduzido SelecionarProdutoFinalProduzido(int id)
         {
-            return _contexto.Set<ProdutoFinalProduzido>().Include( p => p.Receita ).FirstOrDefault(x => x.Id == id);
+            return _contexto.Set<ProdutoFinalProduzido>().Include(p => p.Receita).FirstOrDefault(x => x.Id == id);
         }
 
     }
