@@ -1,0 +1,10 @@
+.vs
+.suo
+.user
+*.suo
+*.user
+bin
+obj
+packages
+Bakery/appsettings.json
+Bakery/appsettings.Development.json

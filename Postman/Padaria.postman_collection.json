@@ -1,0 +1,767 @@
+{
+	"info": {
+		"_postman_id": "2b6e82d4-1587-4b04-9483-67989439b135",
+		"name": "Padaria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login Adminsitrador",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"administrador@email\",\r\n  \"senha\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Home/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Home",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Padeiro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"padeiro@email\",\r\n  \"senha\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Home/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Home",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estoquista",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"estoquista@email\",\r\n  \"senha\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Home/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Home",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendedor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"vendedor@email\",\r\n  \"senha\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Home/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Home",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Materia Prima",
+			"item": [
+				{
+					"name": "Materia Prima Farinha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"Id\": 0,\r\n  \"nome\": \"Farinha\",\r\n  \"unidadeMedida\": \"Kg\",\r\n  \"quantidadeEstoque\": 100,\r\n  \"situacao\": true\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Produto",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Materia Prima Açucar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"Id\": 0,\r\n  \"nome\": \"Açucar\",\r\n  \"unidadeMedida\": \"Kg\",\r\n  \"quantidadeEstoque\": 100,\r\n  \"situacao\": true\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Produto",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Materia Prima get Farinha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE4Mzk3MiwiZXhwIjoxNjE2MTkxMTcyLCJpYXQiOjE2MTYxODM5NzJ9.PsRKmkRFACIHF_PyuHudoh5Crck5lTa8SCRy8wurQ78",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Produto/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Farinha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"IdProduto\": 1,  \r\n  \"Quantidade\": 100,\r\n  \"TipoEstoque\": 0\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Estoque",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Estoque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Mateira Prima",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Produto/ListarMateriasPrimas?nome&mostrarInativos=false",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto",
+								"ListarMateriasPrimas"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": null
+								},
+								{
+									"key": "mostrarInativos",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto Final Produzido Terceiro",
+			"item": [
+				{
+					"name": "Manteiga",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"Id\":0,\r\n   \"nome\":\"Manteiga\",\r\n   \"unidadeMedida\":\"Kg\",   \r\n   \"quantidadeEstoque\": 20,\r\n   \"situacao\":true,\r\n   \"valor\":80   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Produto/Final",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto",
+								"Final"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Manteiga",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Produto/Final/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto",
+								"Final",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Manteiga",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"IdProduto\": 3,  \r\n  \"Quantidade\": 20,\r\n  \"TipoEstoque\": 0\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Estoque",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Estoque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Produto Final",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Produto/ListarProdutosFinais?nome&mostrarInativos=false",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto",
+								"ListarProdutosFinais"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": null
+								},
+								{
+									"key": "mostrarInativos",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto Final Produzido",
+			"item": [
+				{
+					"name": "Pao",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"Id\":0,\r\n   \"nome\":\"Pão\",\r\n   \"unidadeMedida\":\"Kg\",   \r\n   \"situacao\":true,\r\n   \"valor\":30,\r\n   \"receita\":[\r\n      {\r\n         \"idMateriaPrima\":1,\r\n         \"quantidade\":0.9\r\n      },\r\n      {\r\n         \"idMateriaPrima\":2,\r\n         \"quantidade\":0.1\r\n      }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Produto/FinalProduzido",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto",
+								"FinalProduzido"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pao get",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE4Mzk3MiwiZXhwIjoxNjE2MTkxMTcyLCJpYXQiOjE2MTYxODM5NzJ9.PsRKmkRFACIHF_PyuHudoh5Crck5lTa8SCRy8wurQ78",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Produto/FinalProduzido/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto",
+								"FinalProduzido",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produção Pão",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MjE5NywiZXhwIjoxNjE2MTk5Mzk3LCJpYXQiOjE2MTYxOTIxOTd9.OMUrNrDKYGFUY8lDN99InzTPTys753EoJ9_i_aD0rqo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"Id\":4,\r\n   \"quantidadeEstoque\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Producao",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Producao"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Caixa",
+			"item": [
+				{
+					"name": "Abrir Caixa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"idUsuario\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Caixa/AbrirCaixa",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Caixa",
+								"AbrirCaixa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venda Dinheiro",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n   \"idUsuario\":4,\r\n   \"data\":\"2021-03-19T19:18:06.527Z\",\r\n   \"valor\":190,\r\n   \"valorRecebido\":200,\r\n   \"tipoPagamento\":0,\r\n   \"itens\":[\r\n      {\r\n         \"idProdutoFinal\":4,\r\n         \"quantidade\":1\r\n      },\r\n      {\r\n         \"idProdutoFinal\":3,\r\n         \"quantidade\":2\r\n      }\r\n   ],\r\n   \"Caixa\":{\r\n      \"Id\":1\r\n   }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Venda/RealizarVenda",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Venda",
+								"RealizarVenda"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venda Cartao",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n   \"idUsuario\":4,\r\n   \"data\":\"2021-03-19T20:18:06.527Z\",\r\n   \"valor\":80,\r\n   \"valorRecebido\":0,\r\n   \"tipoPagamento\":1,\r\n   \"itens\":[\r\n      {\r\n         \"idProdutoFinal\":3,\r\n         \"quantidade\":1\r\n      }\r\n   ],\r\n   \"Caixa\":{\r\n      \"Id\":1\r\n   }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Venda/RealizarVenda",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Venda",
+								"RealizarVenda"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fechar Caixa",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"idUsuario\": 4,\r\n  \"descartes\": [\r\n          {\r\n            \"idProdutoFinal\": 3,\r\n            \"quantidade\": 2\r\n          },\r\n          {\r\n            \"idProdutoFinal\": 4,\r\n            \"quantidade\": 1\r\n          }\r\n        ]\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Caixa/FecharCaixa/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Caixa",
+								"FecharCaixa",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
