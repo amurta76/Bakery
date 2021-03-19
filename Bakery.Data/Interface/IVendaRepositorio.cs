@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Bakery.Data.Interface
 {
-    interface IVendaRepositorio : IBaseRepositorio<Venda>
+    public interface IVendaRepositorio : IBaseRepositorio<Venda>
     {
     }
 }

@@ -21,6 +21,7 @@ namespace Bakery.Controllers
         private readonly IEstoqueRepositorio _estoqueRepositorio;
         private readonly IProdutoRepositorio _produtoRepositorio;
 
+
         public CaixaController(ICaixaRepositorio caixaRepositorio, IUsuarioRepositorio usuarioRepositorio,
                                         IEstoqueRepositorio estoqueRepositorio, IProdutoRepositorio produtoRepositorio)
 

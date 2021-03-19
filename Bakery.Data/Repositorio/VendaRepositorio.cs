@@ -12,6 +12,7 @@ namespace Bakery.Data.Repositorio
     {
         public VendaRepositorio(Contexto contexto) : base(contexto)
         {
+
         }
 
         public decimal VendaCaixa(int idCaixa)
