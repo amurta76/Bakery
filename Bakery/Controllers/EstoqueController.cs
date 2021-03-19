@@ -71,7 +71,7 @@ namespace Bakery.Controllers
                     produto.QuantidadeEstoque += estoque.Quantidade;
 
                 else produto.QuantidadeEstoque -= estoque.Quantidade;
-
+                estoque.Data = DateTime.Now;
                 _estoqueRepositorio.Incluir(estoque);
                 return Ok("Estoque alterado com sucesso");
             }
