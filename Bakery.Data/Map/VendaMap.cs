@@ -23,6 +23,8 @@ namespace Bakery.Data.Map
 
             builder.Property(x => x.Valor).HasColumnType("decimal(18,2)").IsRequired();
 
+            builder.Property(x => x.ValorRecebido).HasColumnType("decimal(18,2)").IsRequired();
+
 
             builder.HasOne(u => u.Caixa)
                 .WithMany(c => c.Vendas)

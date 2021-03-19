@@ -17,12 +17,15 @@ namespace Bakery.Controllers
         private readonly IVendaRepositorio _vendaRepositorio;
         private readonly IProdutoRepositorio _produtoRepositorio;
         private readonly IEstoqueRepositorio _estoqueRepositorio;
+        private readonly ICaixaRepositorio _caixaRepositorio;
 
-        public VendaController(IVendaRepositorio vendaRepositorio, IProdutoRepositorio produtoRepositorio, IEstoqueRepositorio estoqueRepositorio)
+        public VendaController(IVendaRepositorio vendaRepositorio, IProdutoRepositorio produtoRepositorio,
+                                IEstoqueRepositorio estoqueRepositorio, ICaixaRepositorio caixaRepositorio)
         {
             _vendaRepositorio = vendaRepositorio;
             _produtoRepositorio = produtoRepositorio;
             _estoqueRepositorio = estoqueRepositorio;
+            _caixaRepositorio = caixaRepositorio;
 
         }
 
@@ -39,21 +42,37 @@ namespace Bakery.Controllers
                 }
 
                 if (venda.Data < DateTime.Now)
-                    return BadRequest(" A venda não foi realizada");
+                    return BadRequest("A venda não foi realizada, a data da venda não pode ser anterior a hoje");
 
-                if (venda.Valor <= 1)
-                {
-                    return BadRequest(" Não será permitido realizar a venda se o valor for zero ");
-                }
+                if (venda.Data > DateTime.Now)
+                    return BadRequest("A venda não foi realizada, a data da venda não pode ser posterior a hoje");
 
+                if (venda.Valor <= 0)
+                    return BadRequest("Não será permitido realizar a venda se o valor for zero ");
+
+                if (venda.TipoPagamento == EnumTipoPagamento.DINHEIRO &&
+                     venda.ValorRecebido < venda.Valor)
+                    return BadRequest("Não será permitido realizar a venda. O valor recebido é menor que o valor da venda.");
+
+                decimal totalVenda = 0;
                 foreach (var item in venda.Itens)
                 {
-                    if (item.ProdutoFinal.QuantidadeEstoque <= 0)
-                        return BadRequest(" Não será permitido realizar a venda se o produtofinal estiver zeardo no estoque ");
+                    ProdutoFinal produtoFinal = (ProdutoFinal)_produtoRepositorio.Selecionar(item.IdProdutoFinal);
+
+                    totalVenda += produtoFinal.Valor * item.Quantidade;
+
+                    if ((produtoFinal.QuantidadeEstoque - item.Quantidade) < 0)
+                        return BadRequest($"Não será permitido realizar a venda. O produto {produtoFinal.Nome} está com estoque indisponível");
                 }
 
-                if (!venda.Caixa.EstaAberto())
-                    return BadRequest(" Não será permitido realizar a venda se o caixa estiver aberto");
+
+                if (venda.Valor != totalVenda)
+                    return BadRequest("Não será permitido realizar a venda. O Valor da venda está incorreto.");
+
+                var caixa = _caixaRepositorio.Selecionar(venda.Caixa.Id);
+
+                if (!caixa.EstaAberto())
+                    return BadRequest("Não será permitido realizar a venda se o caixa estiver fechado");
 
                 foreach (var item in venda.Itens)
                 {
@@ -74,7 +93,13 @@ namespace Bakery.Controllers
                 _vendaRepositorio.Incluir(venda);
                 VendaDTO vendaRetorno = new VendaDTO();
                 vendaRetorno.mensagem = "Venda efetuada com sucesso";
+
+
                 vendaRetorno.valorPago = venda.Valor;
+
+                if ( venda.TipoPagamento == EnumTipoPagamento.DINHEIRO)
+                    vendaRetorno.troco = venda.ValorRecebido  - venda.Valor;
+
                 return Ok(vendaRetorno);
             }
             catch (Exception)
