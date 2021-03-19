@@ -13,6 +13,7 @@ namespace Bakery.Data.Repositorio
     {
         public ProdutoRepositorio(Contexto contexto) : base(contexto)
         { }
+        
         public decimal BuscarQuantidadeEstoque(int id)
         {
             var produto = Selecionar(id);

@@ -40,7 +40,7 @@ namespace Bakery.Data.Repositorio
 
         Usuario IUsuarioRepositorio.Login(LoginDTO login)
         {
-            var usuario = _contexto.Set<Usuario>().FirstOrDefault(u => u.Email == login.email && u.Senha == login.Senha);
+            var usuario = _contexto.Set<Usuario>().FirstOrDefault(u => u.Email == login.Email && u.Senha == login.Senha);
             return usuario;
         }
     }

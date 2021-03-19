@@ -7,7 +7,7 @@ namespace Bakery.Dominio.Dto
 {
     public class FechamentoCaixaDTO
     {
-        public EnumTipoPagamento TipoPagamento { get; set; }
+        public String TipoPagamento { get; set; }
         public decimal Valor { get; set; }
     }
 }

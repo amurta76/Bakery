@@ -15,6 +15,8 @@ namespace Bakery.Data.Map
 
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+                        
             builder.Property(x => x.IdCaixa).IsRequired();
 
             builder.Property(x => x.Data).IsRequired();

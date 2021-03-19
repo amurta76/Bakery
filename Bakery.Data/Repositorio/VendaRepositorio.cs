@@ -20,7 +20,7 @@ namespace Bakery.Data.Repositorio
         {
             var vendaCaixa = _contexto.Set<Venda>().Where(v => v.IdCaixa == idCaixa).GroupBy(v => v.TipoPagamento)
                 .Select(v => new FechamentoCaixaDTO() {
-                    TipoPagamento = v.Key,
+                    TipoPagamento = v.Key.ToString(),
                     Valor = v.Sum(s => s.Valor)
                 }).ToList();
 

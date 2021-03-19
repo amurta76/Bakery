@@ -6,11 +6,11 @@ namespace Bakery.Dominio.Dto
 {
     public class LoginDTO
     {
-        public string email { get; set; }
+        public string Email { get; set; }
         public string Senha { get; set; }
 
         public bool ValidaLogin() {
-            return !(string.IsNullOrEmpty(email) || string.IsNullOrEmpty(Senha));
+            return !(string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Senha));
         }
     }
 }

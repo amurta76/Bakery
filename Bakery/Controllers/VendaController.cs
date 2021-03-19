@@ -2,6 +2,7 @@
 using Bakery.Dominio;
 using Bakery.Dominio.Dto;
 using Bakery.Dominio.Enum;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +13,8 @@ using System.Threading.Tasks;
 namespace Bakery.Controllers
 
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class VendaController : Controller
     {
         private readonly IVendaRepositorio _vendaRepositorio;
@@ -31,7 +34,7 @@ namespace Bakery.Controllers
 
         [HttpPost()]
         [Route("RealizarVenda")]
-        //[Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
+        [Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
         public ActionResult<VendaDTO> RealizarVenda([FromBody] Venda venda)
         {
             try
@@ -41,10 +44,10 @@ namespace Bakery.Controllers
                     return BadRequest("Venda não foi finalizada com sucesso");
                 }
 
-                if (venda.Data < DateTime.Now)
+                if (venda.Data.Date < DateTime.Now.Date)
                     return BadRequest("A venda não foi realizada, a data da venda não pode ser anterior a hoje");
 
-                if (venda.Data > DateTime.Now)
+                if (venda.Data.Date > DateTime.Now.Date)
                     return BadRequest("A venda não foi realizada, a data da venda não pode ser posterior a hoje");
 
                 if (venda.Valor <= 0)
@@ -74,6 +77,8 @@ namespace Bakery.Controllers
                 if (!caixa.EstaAberto())
                     return BadRequest("Não será permitido realizar a venda se o caixa estiver fechado");
 
+                venda.Caixa = caixa;
+
                 foreach (var item in venda.Itens)
                 {
                     ProdutoFinal produtoFinal = (ProdutoFinal)_produtoRepositorio.Selecionar(item.IdProdutoFinal);
@@ -92,17 +97,17 @@ namespace Bakery.Controllers
 
                 _vendaRepositorio.Incluir(venda);
                 VendaDTO vendaRetorno = new VendaDTO();
-                vendaRetorno.mensagem = "Venda efetuada com sucesso";
+                vendaRetorno.Mensagem = "Venda efetuada com sucesso";
 
 
-                vendaRetorno.valorPago = venda.Valor;
+                vendaRetorno.ValorPago = venda.Valor;
 
                 if ( venda.TipoPagamento == EnumTipoPagamento.DINHEIRO)
-                    vendaRetorno.troco = venda.ValorRecebido  - venda.Valor;
+                    vendaRetorno.Troco = venda.ValorRecebido  - venda.Valor;
 
                 return Ok(vendaRetorno);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }

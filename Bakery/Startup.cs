@@ -48,6 +48,7 @@ namespace Bakery
             services.AddScoped<IIngredienteRepositorio, IngredienteRepositorio>();
             services.AddScoped<IEstoqueRepositorio, EstoqueRepositorio>();
             services.AddScoped<ICaixaRepositorio, CaixaRepositorio>();
+            services.AddScoped<IVendaRepositorio, VendaRepositorio>();
 
 
             services.AddSwaggerGen(c =>

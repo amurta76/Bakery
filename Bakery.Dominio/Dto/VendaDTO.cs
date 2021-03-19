@@ -6,9 +6,8 @@ namespace Bakery.Dominio.Dto
 {
     public class VendaDTO
     {
-        public decimal troco { get; set; }
-        public string mensagem { get; set; }
-
-        public decimal valorPago { get; set; }
+        public decimal Troco { get; set; }
+        public string Mensagem { get; set; }
+        public decimal ValorPago { get; set; }
     }
 }

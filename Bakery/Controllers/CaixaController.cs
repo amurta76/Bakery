@@ -38,8 +38,8 @@ namespace Bakery.Controllers
         }
 
         [HttpPost]
-        //[Route("AbrirCaixa")]
-        //[Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
+        [Route("AbrirCaixa")]
+        [Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
         public IActionResult Post([FromBody] Caixa caixa)
         {
             try
@@ -69,9 +69,9 @@ namespace Bakery.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        //[Route("FecharCaixa")]
-        //[Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
+        [HttpPut]
+        [Route("FecharCaixa/{id}")]
+        [Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
         public ActionResult<List<FechamentoCaixaDTO>> Put(int id, [FromBody] Caixa caixa)
         {
             if (caixa == null)

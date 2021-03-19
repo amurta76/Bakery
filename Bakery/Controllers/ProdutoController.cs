@@ -114,7 +114,8 @@ namespace Bakery.Controllers
         [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Post([FromBody] ProdutoMateriaPrima produto)
         {
-            return IncluirProduto(produto);
+            bool validaEstoque = true;
+            return IncluirProduto(produto, validaEstoque);
         }
 
 
@@ -142,7 +143,7 @@ namespace Bakery.Controllers
         {
             try
             {
-                var ListarMateriaPrima = _produtoRepositorio.ListarMateriasPrima(nome, mostrarInativos );
+                var ListarMateriaPrima = _produtoRepositorio.ListarMateriasPrima(nome, mostrarInativos);
                 return Ok(ListarMateriaPrima);
             }
             catch (Exception e)
@@ -152,7 +153,7 @@ namespace Bakery.Controllers
             }
         }
 
-    
+
 
         [HttpGet()]
         [Route("ListarProdutosFinais")]
@@ -177,8 +178,8 @@ namespace Bakery.Controllers
 
         }
 
-        
-        
+
+
 
 
 
@@ -209,7 +210,8 @@ namespace Bakery.Controllers
         [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Post([FromBody] ProdutoFinal produto)
         {
-            return IncluirProdutoFinal(produto);
+            bool validaEstoque = true;
+            return IncluirProdutoFinal(produto, validaEstoque);
         }
 
         #endregion
@@ -245,22 +247,22 @@ namespace Bakery.Controllers
         {
             if (VerificarEstoqueMateriaPrima(produto))
             {
-
-                return IncluirProdutoFinal(produto);
+                bool validaEstoque = false;
+                return IncluirProdutoFinal(produto, validaEstoque);
             }
             else
                 return BadRequest("Existem matérias-primas da receita que estão inativas ou com quantidades inválidas.");
-        }        
+        }
 
         #endregion
 
         #region Private
 
-        private IActionResult IncluirProduto(Produto produto)
+        private IActionResult IncluirProduto(Produto produto, bool validaEstoque)
         {
             try
             {
-                if (!produto.ValidaQuantidadeEstoque())
+                if (!produto.ValidaQuantidadeEstoque() && validaEstoque)
                 {
                     return BadRequest("A quantidade não pode ser negativa ou zero.");
                 }
@@ -268,15 +270,18 @@ namespace Bakery.Controllers
                 produto.Situacao = true;
                 _produtoRepositorio.Incluir(produto);
 
-                Estoque estoque = new Estoque()
+                if (produto.QuantidadeEstoque > 0)
                 {
-                    Produto = produto,
-                    Data = new DateTime(),
-                    Quantidade = produto.QuantidadeEstoque,
-                    TipoEstoque = EnumTipoEstoque.ENTRADA
-                };
+                    Estoque estoque = new Estoque()
+                    {
+                        Produto = produto,
+                        Data = new DateTime(),
+                        Quantidade = produto.QuantidadeEstoque,
+                        TipoEstoque = EnumTipoEstoque.ENTRADA
+                    };
 
-                _estoqueRepositorio.Incluir(estoque);
+                    _estoqueRepositorio.Incluir(estoque);
+                }
 
                 return Ok("Produto incluído com sucesso.");
             }
@@ -286,11 +291,13 @@ namespace Bakery.Controllers
             }
         }
 
-        private IActionResult IncluirProdutoFinal(ProdutoFinal produto)
+        private IActionResult IncluirProdutoFinal(ProdutoFinal produto, bool validaEstoque)
         {
-            if (produto.ValidaQuantidadeEstoque() && produto.ValidaValor())
-                return IncluirProduto(produto);
-            else if (!produto.ValidaQuantidadeEstoque())
+            if ((produto.ValidaQuantidadeEstoque() || !validaEstoque) && produto.ValidaValor())
+            {
+                return IncluirProduto(produto, validaEstoque);
+            }
+            else if (!produto.ValidaQuantidadeEstoque() && validaEstoque)
                 return BadRequest("Quantidade inválida.");
             else
                 return BadRequest("Valor inválido.");
