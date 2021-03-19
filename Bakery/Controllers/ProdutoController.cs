@@ -59,7 +59,9 @@ namespace Bakery.Controllers
             }
         }
 
-        [HttpPut()]
+
+
+        [HttpPut]
         [Route("Inativar/{id}")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         [ProducesResponseType(200)] // Ok
@@ -132,7 +134,7 @@ namespace Bakery.Controllers
 
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Route("ListarMateriasPrimas")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         [ProducesResponseType(200)] //Ok        
@@ -218,7 +220,33 @@ namespace Bakery.Controllers
 
         #region ProdutoFinalProduzido
 
-        [HttpPut()]
+        [HttpGet]
+        [Route("FinalProduzido/{id}")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido
+        [ProducesResponseType(404)] //Não encontrado
+        [ProducesResponseType(500)] //Erro interno do servidor
+        public ActionResult<ProdutoFinalProduzido> GetProdutoFinalProduzido(int id)
+        {
+            try
+            {
+                var produto = _produtoRepositorio.SelecionarProdutoFinalProduzido(id);
+
+                if (produto == null)
+                {
+                    return NotFound("Produto não encontrado.");
+                }
+
+                return Ok(produto);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpPut]
         [Route("FinalProduzido/{id}")]
         [Authorize(Roles = "ADMINISTRADOR, PADEIRO")]
         [ProducesResponseType(200)] // Ok

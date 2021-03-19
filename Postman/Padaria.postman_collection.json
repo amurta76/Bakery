@@ -303,7 +303,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:5001/api/Produto/4",
+							"raw": "https://localhost:5001/api/Produto/3",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -312,7 +312,7 @@
 							"path": [
 								"api",
 								"Produto",
-								"4"
+								"3"
 							]
 						}
 					},
@@ -379,7 +379,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:5001/api/Produto/3",
+							"raw": "https://localhost:5001/api/Produto/FinalProduzido/4",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -388,7 +388,8 @@
 							"path": [
 								"api",
 								"Produto",
-								"3"
+								"FinalProduzido",
+								"4"
 							]
 						}
 					},

@@ -38,6 +38,10 @@ namespace Bakery
         {
             services.AddControllers();
 
+
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
             string connectionString = Configuration.GetConnectionString("ContextoContext");
 
             services.AddDbContext<Contexto>(options =>

@@ -13,7 +13,7 @@ namespace Bakery.Data.Repositorio
     {
         public ProdutoRepositorio(Contexto contexto) : base(contexto)
         { }
-        
+
         public decimal BuscarQuantidadeEstoque(int id)
         {
             var produto = Selecionar(id);
@@ -64,7 +64,6 @@ namespace Bakery.Data.Repositorio
             }).OrderBy(x => x.Nome).ToList();
 
         }
-
 
         public ProdutoFinalProduzido SelecionarProdutoFinalProduzido(int id)
         {
