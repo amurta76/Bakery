@@ -157,7 +157,7 @@ namespace Bakery.Controllers
 
 
 
-        [HttpGet()]
+        [HttpGet]
         [Route("ListarProdutosFinais")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         [ProducesResponseType(200)] //Ok
@@ -190,7 +190,33 @@ namespace Bakery.Controllers
 
         #region ProdutoFinal
 
-        [HttpPut()]
+        [HttpGet]
+        [Route("Final/{id}")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido
+        [ProducesResponseType(404)] //Não encontrado
+        [ProducesResponseType(500)] //Erro interno do servidor
+        public ActionResult<ProdutoFinalProduzido> GetProdutoFinal(int id)
+        {
+            try
+            {
+                var produto = _produtoRepositorio.SelecionarProdutoFinal(id);
+
+                if (produto == null)
+                {
+                    return NotFound("Produto não encontrado.");
+                }
+
+                return Ok(produto);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpPut]
         [Route("Final/{id}")]
         [Authorize(Roles = "ADMINISTRADOR, ESTOQUISTA")]
         [ProducesResponseType(200)] // Ok
@@ -303,7 +329,7 @@ namespace Bakery.Controllers
                     Estoque estoque = new Estoque()
                     {
                         Produto = produto,
-                        Data = new DateTime(),
+                        Data = DateTime.Now,
                         Quantidade = produto.QuantidadeEstoque,
                         TipoEstoque = EnumTipoEstoque.ENTRADA
                     };

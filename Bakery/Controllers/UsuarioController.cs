@@ -105,7 +105,8 @@ namespace Bakery.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-        [HttpGet()]
+     
+        [HttpGet]
         [Route("ListarUsuario")]
         [ProducesResponseType(200)] // Ok        
         [ProducesResponseType(401)] //Não autorizado
@@ -120,7 +121,6 @@ namespace Bakery.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }

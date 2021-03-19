@@ -65,9 +65,19 @@ namespace Bakery.Data.Repositorio
 
         }
 
+        public new Produto Selecionar(int id)
+        {
+            return _contexto.Set<Produto>().Include(p => p.Estoques).FirstOrDefault(x => x.Id == id);
+        }
+
         public ProdutoFinalProduzido SelecionarProdutoFinalProduzido(int id)
         {
-            return _contexto.Set<ProdutoFinalProduzido>().Include(p => p.Receita).FirstOrDefault(x => x.Id == id);
+            return _contexto.Set<ProdutoFinalProduzido>().Include(p => p.Receita).Include(p => p.Estoques).FirstOrDefault(x => x.Id == id);
+        }
+
+        public ProdutoFinal SelecionarProdutoFinal(int id)
+        {
+            return _contexto.Set<ProdutoFinal>().Include(p => p.Estoques).FirstOrDefault(x => x.Id == id);
         }
 
     }

@@ -28,6 +28,11 @@ namespace Bakery.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(400)] //Requisição inválida
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public IActionResult Post([FromBody] ProdutoFinalProduzido produtoParaProduzir)
         {
 
@@ -50,7 +55,7 @@ namespace Bakery.Controllers
             Estoque estoque = new Estoque()
             {
                 Produto = produtoFinalProduzido,
-                Data = new DateTime(),
+                Data = DateTime.Now,
                 Quantidade = produtoParaProduzir.QuantidadeEstoque,
                 TipoEstoque = EnumTipoEstoque.ENTRADA
             };
@@ -66,7 +71,7 @@ namespace Bakery.Controllers
                 Estoque estoqueMateiraPrima = new Estoque()
                 {
                     Produto = materiaPrima,
-                    Data = new DateTime(),
+                    Data = DateTime.Now,
                     Quantidade = produtoParaProduzir.QuantidadeEstoque * item.Quantidade,
                     TipoEstoque = EnumTipoEstoque.SAIDA
                 };

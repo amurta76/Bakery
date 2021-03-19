@@ -15,6 +15,7 @@ namespace Bakery.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class VendaController : Controller
     {
         private readonly IVendaRepositorio _vendaRepositorio;
@@ -32,9 +33,14 @@ namespace Bakery.Controllers
 
         }
 
-        [HttpPost()]
+        [HttpPost]
         [Route("RealizarVenda")]
         [Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(400)] //Requisição inválida
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido        
+        [ProducesResponseType(500)] //Erro interno do servidor
         public ActionResult<VendaDTO> RealizarVenda([FromBody] Venda venda)
         {
             try
@@ -86,7 +92,7 @@ namespace Bakery.Controllers
                     Estoque estoque = new Estoque()
                     {
                         Produto = produtoFinal,
-                        Data = new DateTime(),
+                        Data = DateTime.Now,
                         Quantidade = item.Quantidade,
                         TipoEstoque = EnumTipoEstoque.SAIDA
                     };

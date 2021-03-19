@@ -37,6 +37,31 @@ namespace Bakery.Controllers
             _vendaRepositorio = vendaRepositorio;
         }
 
+        [HttpGet("{id}")]        
+        [ProducesResponseType(200)] // Ok
+        [ProducesResponseType(401)] //Não autorizado
+        [ProducesResponseType(403)] //Proibido
+        [ProducesResponseType(404)] //Não encontrado
+        [ProducesResponseType(500)] //Erro interno do servidor
+        public ActionResult<ProdutoFinalProduzido> Get(int id)
+        {
+            try
+            {
+                var caixa = _caixaRepositorio.Selecionar(id);
+
+                if (caixa == null)
+                {
+                    return NotFound("Caixa não encontrado.");
+                }
+
+                return Ok(caixa);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
         [HttpPost]
         [Route("AbrirCaixa")]
         [Authorize(Roles = "ADMINISTRADOR, VENDEDOR")]
@@ -91,7 +116,7 @@ namespace Bakery.Controllers
                         Estoque estoqueDescarte = new Estoque()
                         {
                             Produto = descarte,
-                            Data = new DateTime(),
+                            Data = DateTime.Now,
                             Quantidade = item.Quantidade,
                             TipoEstoque = EnumTipoEstoque.SAIDA
                         };
