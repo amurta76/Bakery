@@ -280,6 +280,47 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Listar Mateira Prima",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Produto/ListarMateriasPrimas?nome&mostrarInativos=false",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto",
+								"ListarMateriasPrimas"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": null
+								},
+								{
+									"key": "mostrarInativos",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -392,6 +433,47 @@
 							"path": [
 								"api",
 								"Estoque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Produto Final",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Produto/ListarProdutosFinais?nome&mostrarInativos=false",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Produto",
+								"ListarProdutosFinais"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": null
+								},
+								{
+									"key": "mostrarInativos",
+									"value": "false"
+								}
 							]
 						}
 					},
