@@ -141,7 +141,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVzdG9xdWlzdGEiLCJyb2xlIjoiRVNUT1FVSVNUQSIsIm5iZiI6MTYxNjE3ODU5MywiZXhwIjoxNjE2MTg1NzkzLCJpYXQiOjE2MTYxNzg1OTN9.a6pj7d6GoWVN5vTaGVUWqajPCuCQCD28kyBOsPEhIy0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
 									"type": "string"
 								}
 							]
@@ -180,7 +180,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVzdG9xdWlzdGEiLCJyb2xlIjoiRVNUT1FVSVNUQSIsIm5iZiI6MTYxNjE3ODU5MywiZXhwIjoxNjE2MTg1NzkzLCJpYXQiOjE2MTYxNzg1OTN9.a6pj7d6GoWVN5vTaGVUWqajPCuCQCD28kyBOsPEhIy0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
 									"type": "string"
 								}
 							]
@@ -219,7 +219,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVzdG9xdWlzdGEiLCJyb2xlIjoiRVNUT1FVSVNUQSIsIm5iZiI6MTYxNjE3ODU5MywiZXhwIjoxNjE2MTg1NzkzLCJpYXQiOjE2MTYxNzg1OTN9.a6pj7d6GoWVN5vTaGVUWqajPCuCQCD28kyBOsPEhIy0",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE4Mzk3MiwiZXhwIjoxNjE2MTkxMTcyLCJpYXQiOjE2MTYxODM5NzJ9.PsRKmkRFACIHF_PyuHudoh5Crck5lTa8SCRy8wurQ78",
 									"type": "string"
 								}
 							]
@@ -241,6 +241,45 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Adicionar Farinha",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"IdProduto\": 1,  \r\n  \"Quantidade\": 100,\r\n  \"TipoEstoque\": 0\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Estoque",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Estoque"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -255,7 +294,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVzdG9xdWlzdGEiLCJyb2xlIjoiRVNUT1FVSVNUQSIsIm5iZiI6MTYxNjE4MDIxMywiZXhwIjoxNjE2MTg3NDEzLCJpYXQiOjE2MTYxODAyMTN9.i24VwmO6Zank7W_zosJ82-83xFQQacEIR7I0GdQslT8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
 									"type": "string"
 								}
 							]
@@ -295,7 +334,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVzdG9xdWlzdGEiLCJyb2xlIjoiRVNUT1FVSVNUQSIsIm5iZiI6MTYxNjE4MDIxMywiZXhwIjoxNjE2MTg3NDEzLCJpYXQiOjE2MTYxODAyMTN9.i24VwmO6Zank7W_zosJ82-83xFQQacEIR7I0GdQslT8",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
 									"type": "string"
 								}
 							]
@@ -303,7 +342,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:5001/api/Produto/3",
+							"raw": "https://localhost:5001/api/Produto/Final/3",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -312,7 +351,47 @@
 							"path": [
 								"api",
 								"Produto",
+								"Final",
 								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Manteiga",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"IdProduto\": 3,  \r\n  \"Quantidade\": 20,\r\n  \"TipoEstoque\": 0\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Estoque",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Estoque"
 							]
 						}
 					},
@@ -331,7 +410,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlBhZGVpcm8iLCJyb2xlIjoiUEFERUlSTyIsIm5iZiI6MTYxNjE3OTI0OSwiZXhwIjoxNjE2MTg2NDQ5LCJpYXQiOjE2MTYxNzkyNDl9.4shzImCbDqIjLqj4dDnVoSRsBl9VCc05H9zJX-g4ntc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
 									"type": "string"
 								}
 							]
@@ -371,7 +450,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlBhZGVpcm8iLCJyb2xlIjoiUEFERUlSTyIsIm5iZiI6MTYxNjE3OTI0OSwiZXhwIjoxNjE2MTg2NDQ5LCJpYXQiOjE2MTYxNzkyNDl9.4shzImCbDqIjLqj4dDnVoSRsBl9VCc05H9zJX-g4ntc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE4Mzk3MiwiZXhwIjoxNjE2MTkxMTcyLCJpYXQiOjE2MTYxODM5NzJ9.PsRKmkRFACIHF_PyuHudoh5Crck5lTa8SCRy8wurQ78",
 									"type": "string"
 								}
 							]
@@ -403,7 +482,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlBhZGVpcm8iLCJyb2xlIjoiUEFERUlSTyIsIm5iZiI6MTYxNjE4MDM2NCwiZXhwIjoxNjE2MTg3NTY0LCJpYXQiOjE2MTYxODAzNjR9.QBrxxWTLVg7QajgbPXE6aapumtd9CBTmRyAKmvKFaYs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MjE5NywiZXhwIjoxNjE2MTk5Mzk3LCJpYXQiOjE2MTYxOTIxOTd9.OMUrNrDKYGFUY8lDN99InzTPTys753EoJ9_i_aD0rqo",
 									"type": "string"
 								}
 							]
@@ -447,7 +526,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlZlbmRlZG9yIiwicm9sZSI6IlZFTkRFRE9SIiwibmJmIjoxNjE2MTgwNTUzLCJleHAiOjE2MTYxODc3NTMsImlhdCI6MTYxNjE4MDU1M30.DrhhSoYKdbUOUVCaTetwPQASey7IpWTdIrEvu1oK9rQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
 									"type": "string"
 								}
 							]
@@ -487,7 +566,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlZlbmRlZG9yIiwicm9sZSI6IlZFTkRFRE9SIiwibmJmIjoxNjE2MTgxNTM2LCJleHAiOjE2MTYxODg3MzYsImlhdCI6MTYxNjE4MTUzNn0.Hs0DuKUcFfKVFd89ZLkPIEXzEjCx6n4CcVQ6ewop0zY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
 									"type": "string"
 								}
 							]
@@ -527,7 +606,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlZlbmRlZG9yIiwicm9sZSI6IlZFTkRFRE9SIiwibmJmIjoxNjE2MTgxNTM2LCJleHAiOjE2MTYxODg3MzYsImlhdCI6MTYxNjE4MTUzNn0.Hs0DuKUcFfKVFd89ZLkPIEXzEjCx6n4CcVQ6ewop0zY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
 									"type": "string"
 								}
 							]
@@ -567,7 +646,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlZlbmRlZG9yIiwicm9sZSI6IlZFTkRFRE9SIiwibmJmIjoxNjE2MTgwNTUzLCJleHAiOjE2MTYxODc3NTMsImlhdCI6MTYxNjE4MDU1M30.DrhhSoYKdbUOUVCaTetwPQASey7IpWTdIrEvu1oK9rQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmFkb3IiLCJyb2xlIjoiQURNSU5JU1RSQURPUiIsIm5iZiI6MTYxNjE5MTMxOCwiZXhwIjoxNjE2MTk4NTE4LCJpYXQiOjE2MTYxOTEzMTh9.KUFrz_0ZfUjtlAq8OsW1lfKLYy9-GdBBJj0GIJw_fBY",
 									"type": "string"
 								}
 							]
