@@ -1,6 +1,7 @@
 ﻿using Bakery.Data.Interface;
 using Bakery.Data.Repository;
 using Bakery.Dominio;
+using Bakery.Dominio.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,14 @@ namespace Bakery.Data.Repositorio
 
         }
 
-        public decimal VendaCaixa(int idCaixa)
+        public List<FechamentoCaixaDTO> VendaCaixa(int idCaixa)
         {
-            var vendaCaixa = _contexto.Set<Venda>().Where(v => v.IdCaixa == idCaixa).Sum(v => v.Valor);
+            var vendaCaixa = _contexto.Set<Venda>().Where(v => v.IdCaixa == idCaixa).GroupBy(v => v.TipoPagamento)
+                .Select(v => new FechamentoCaixaDTO() {
+                    TipoPagamento = v.Key,
+                    Valor = v.Sum(s => s.Valor)
+                }).ToList();
+
             return vendaCaixa;
         }
     }
